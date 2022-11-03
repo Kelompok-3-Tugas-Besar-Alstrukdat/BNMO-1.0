@@ -31,7 +31,7 @@ void diner_dash(){
         }
     
     }
-
+    
     printf("MASUKKAN COMMAND: ");
     scanf("%s",&cmd);
     
