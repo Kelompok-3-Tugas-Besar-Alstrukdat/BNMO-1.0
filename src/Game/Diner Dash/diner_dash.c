@@ -4,7 +4,7 @@ void diner_dash(){
     Diner masak, saji,daftar;
     int saldo = 0,Count = 0;
     int i = 0;
-    int daftarr = 2;
+    int daftarr = 2; // ini buat daftar menu awal, ntar bakal nmbah terus kalo command berhasil
     system("cls");
     printf("Selamat Datang di Diner Dash Dash!\n\n");
     while ((daftarr < 7) && (Count < 15) ){ //Jika pelanggan lebih dari 7 atau sudah melayari 15 orang (15 persons served, then game ends)
@@ -55,9 +55,9 @@ void diner_dash(){
                 printf("=============================\n");
                 //ini kayak insert lah pokoknya, insert dari Q daftar ke Q masak.
                 masak.Elmt[masak.Jml].Mid = num;
-                masak.Elmt[masak.Jml].Dur = //dari rng;
-                masak.Elmt[masak.Jml].Harga = //dari rng;
-                masak.Elmt[masak.Jml].Tahan = //dari rng;
+                masak.Elmt[masak.Jml].Dur = daftar.Elmt[num].Dur;//dari rng;
+                masak.Elmt[masak.Jml].Harga = daftar.Elmt[num].Harga;//dari rng;
+                masak.Elmt[masak.Jml].Tahan = daftar.Elmt[num].Tahan;//dari rng;
                 masak.Jml += 1;
                 daftarr += 1;
 
