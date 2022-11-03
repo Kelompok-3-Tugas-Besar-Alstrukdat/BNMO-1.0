@@ -24,7 +24,7 @@ typedef struct
 typedef struct
 {
 	infotype Elmt[10];
-    Count Jml;
+    Count Jml; // Jumlah antrian masak(pelanggan) dan antrian served (makanan jadi)
 } Diner_d;
 
 #ifndef Diner_Dash
