@@ -17,14 +17,14 @@ typedef struct
 {
 	Id Mid;
 	Duration Dur;
-    Resist Tahan;
-    Price Harga;
+	Resist Tahan;
+	Price Harga;
 } infotype;
 
 typedef struct
 {
 	infotype Elmt[10];
-    Count Jml; // Jumlah antrian masak(pelanggan) dan antrian served (makanan jadi)
+	Count Jml; // Jumlah antrian masak(pelanggan) dan antrian served (makanan jadi)
 } Diner;
 
 #endif
