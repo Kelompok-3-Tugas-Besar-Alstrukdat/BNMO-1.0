@@ -74,7 +74,7 @@ void diner_dash(){
             else{
                 printf("Inputan salah, ulangi lagi!\n");
             }
-
+            
         }
         else if(cmd == "SERVE"){
             if((num>=0) && (num<=5)){
