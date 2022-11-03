@@ -3,9 +3,10 @@
 #include <math.h>
 
 
-typedef int keytype;
-typedef int valuetype;
-typedef int address;
+#ifndef Diner_Dash
+#define Diner_Dash
+
+
 typedef int Price;
 typedef int Resist;
 typedef int Duration;
@@ -17,17 +18,13 @@ typedef struct
 	Id Mid;
 	Duration Dur;
     Resist Tahan;
-    Price Harga; 
-
+    Price Harga;
 } infotype;
 
 typedef struct
 {
 	infotype Elmt[10];
     Count Jml; // Jumlah antrian masak(pelanggan) dan antrian served (makanan jadi)
-} Diner_d;
-
-#ifndef Diner_Dash
-#define Diner_Dash
+} Diner;
 
 #endif
