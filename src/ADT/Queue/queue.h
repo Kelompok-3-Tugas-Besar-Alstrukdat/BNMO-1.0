@@ -5,9 +5,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "boolean.h"
+#include "mesinkata.h"
 
 #define IDX_UNDEF -1
-#define INIT_CAPACITY 100
+#define INIT_CAPACITY 50
 
 /* Definisi elemen dan address */
 typedef int ElType;
@@ -34,6 +35,13 @@ void CreateQueue(Queue *q);
 /* - Index head bernilai IDX_UNDEF */
 /* - Index tail bernilai IDX_UNDEF */
 /* Proses : Melakukan alokasi, membuat sebuah q kosong */
+
+/**
+ * Destruktor
+ * I.S. Queue terdefinisi
+ * F.S. q.buffer terdealokasi
+ */
+void DeallocateQueue(Queue *q);
 
 /* ********* Prototype ********* */
 boolean isEmpty(Queue q);

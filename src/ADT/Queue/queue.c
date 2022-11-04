@@ -26,6 +26,16 @@ void CreateQueue(Queue *q)
 /* - Index tail bernilai IDX_UNDEF */
 /* Proses : Melakukan alokasi, membuat sebuah q kosong */
 
+/**
+ * Destruktor
+ * I.S. Queue terdefinisi
+ * F.S. q.buffer terdealokasi
+ */
+void DeallocateQueue(Queue *q)
+{
+    free((*q).buffer);
+}
+
 /* ********* Prototype ********* */
 boolean isEmpty(Queue q)
 {
