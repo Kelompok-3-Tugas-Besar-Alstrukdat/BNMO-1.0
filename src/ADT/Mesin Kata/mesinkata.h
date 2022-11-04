@@ -53,6 +53,10 @@ void COMMAND();
           atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
           currentChar karakter pertama sesudah karakter terakhir kata */
 
+void printWord(Word Kata);
+/* Menampilkan Kata ke layar
+   Prekondisi: Kata terdifinisi */
+
 int toInt (Word Kata);
 /* Mengubah kata yang merupakan angka numerik menjadi integer
    Prekondisi : Kata merupakan bilangan numerik */

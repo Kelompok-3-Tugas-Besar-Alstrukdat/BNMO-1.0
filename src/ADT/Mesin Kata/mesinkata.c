@@ -98,6 +98,16 @@ void COMMAND()
           atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
           currentChar karakter pertama sesudah karakter terakhir kata */
 
+void printWord(Word Kata)
+{
+    for (int i = 0; i < Kata.Length; i++)
+    {
+        printf("%c", Kata.TabWord[i]);
+    }
+}
+/* Menampilkan Kata ke layar
+   Prekondisi: Kata terdifinisi */
+
 int toInt (Word Kata)
 {
     int base;
