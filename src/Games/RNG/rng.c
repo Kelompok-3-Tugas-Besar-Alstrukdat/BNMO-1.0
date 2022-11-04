@@ -35,4 +35,5 @@ int main()
         printf("\nMaaf, Anda kurang beruntung. Kesempatan Anda telah habis. Coba lagi lain waktu.")
     }
     printf("Skor Anda: %d", score);
+    return 0;
 }
