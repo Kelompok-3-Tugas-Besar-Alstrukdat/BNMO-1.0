@@ -60,7 +60,11 @@ ElType Get(ArrayDin array, IdxType i)
  */
 void Set(ArrayDin *array, ElType el, IdxType i)
 {
-    (*array).Elmt[i] = el;
+    (*array).Elmt[i].Length = el.Length;
+    for (int idx = 0; idx < el.Length; idx++)
+    {
+        (*array).Elmt[i].TabWord[idx] = el.TabWord[idx];
+    }
 }
 
 /**
@@ -83,7 +87,12 @@ void InsertLast(ArrayDin *array, ElType el)
         (*array).Capacity *= 2;
         realloc((*array).Elmt, GetCapacity(*array));
     }
-    (*array).Elmt[(*array).Neff] = el;
+    int i = (*array).Neff;
+    (*array).Elmt[i].Length = el.Length;
+    for (int idx = 0; idx < (*array).Elmt[i].Length; idx++)
+    {
+        (*array).Elmt[i].TabWord[idx] = el.TabWord[idx];
+    }
     (*array).Neff++;
 }
 
@@ -96,7 +105,11 @@ void DeleteAt(ArrayDin *array, IdxType i)
     (*array).Neff--;
     for (int idx = i; idx < (*array).Neff; idx++)
     {
-        (*array).Elmt[idx] = (*array).Elmt[idx + 1];
+        (*array).Elmt[idx].Length = (*array).Elmt[idx + 1].Length;
+        for (int inidx = 0; inidx < (*array).Elmt[idx].Length; inidx++)
+        {
+            (*array).Elmt[idx].TabWord[inidx] = (*array).Elmt[idx + 1].TabWord[inidx];
+        }
     }
 }
 
@@ -108,6 +121,8 @@ void PrintArrayDin(ArrayDin array)
 {
     for (int i = 0; i < array.Neff; i++)
     {
-        printf("%d. %c\n", (i+1), Get(array,i));
+        printf("%d. ", (i+1));
+        printWord(array.Elmt[i]);
+        printf('\n');
     }
 }
