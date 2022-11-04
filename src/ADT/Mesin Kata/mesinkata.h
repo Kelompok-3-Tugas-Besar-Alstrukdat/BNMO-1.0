@@ -55,6 +55,10 @@ void COMMAND();
 
 int toInt (Word Kata);
 /* Mengubah kata yang merupakan angka numerik menjadi integer
-   Prekondisi : Kata dapat merupakan bilangan numerik */
+   Prekondisi : Kata merupakan bilangan numerik */
+
+boolean isWordEqual (Word Kata1, Word Kata2);
+/* Memeriksa apakah Kata1 dan Kata2 sama, jika Kata1 dan Kata2 sama akan mengembalikan true
+   Prekondisi : Kata1 dan Kata2 terdefinisi */
 
 #endif

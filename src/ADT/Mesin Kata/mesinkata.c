@@ -115,3 +115,27 @@ int toInt (Word Kata)
 }
 /* Mengubah kata yang merupakan angka numerik menjadi integer
    Prekondisi : Kata merupakan bilangan numerik */
+
+boolean isWordEqual (Word Kata1, Word Kata2)
+{
+    boolean check = true;
+    if (Kata1.Length != Kata2.Length)
+    {
+        return !check;
+    }
+    else
+    {
+        int i = 0;
+        while (check && (i < Kata1.Length))
+        {
+            if (Kata1.TabWord[i] != Kata2.TabWord[i])
+            {
+                check = false;
+            }
+            i++;
+        }
+        return check;
+    }
+}
+/* Memeriksa apakah Kata1 dan Kata2 sama, jika Kata1 dan Kata2 sama akan mengembalikan true
+   Prekondisi : Kata1 dan Kata2 terdefinisi */
