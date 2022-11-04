@@ -11,7 +11,11 @@
 /* *** Kreator *** */
 void CreateQueue(Queue *q)
 {
-    (*q).buffer = (ElType *) malloc (INIT_CAPACITY * sizeof(ElType));
+    do
+    {
+        (*q).buffer = (ElType *) malloc (INIT_CAPACITY * sizeof(ElType));
+    }
+    while ((*q).buffer == NULL);
     (*q).capacity = INIT_CAPACITY;
     (*q).idxHead = IDX_UNDEF;
     (*q).idxTail = IDX_UNDEF;
