@@ -1,6 +1,6 @@
 // Game RNG
 // Menguji seberapa beruntung Anda dengan menebak sebuah nilai
-#include "rng.h"
+#include "src/Games/RNG/rng.h"
 
 // Fungsi untuk menentukan nilai integer yang random,
 // dengan rentang nilai 0-100 (inclusive)
@@ -22,7 +22,7 @@ int main()
         attempt++;
         score -= 10;
         printf("Tebakan: ");
-        scanf("%d", &tebakan);
+        tebakan = COMMAND();
         if (X < tebakan)
         {
             printf("Lebih kecil\n");
