@@ -1,4 +1,4 @@
-#include "mesinkarakter.h"
+#include "src/ADT/MesinKarakter/mesinkarakter.h"
 
 /* State Mesin */
 char currentChar;
@@ -13,7 +13,7 @@ void START(char *filename)
 }
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
    Karakter pertama yang ada pada pita posisinya adalah pada jendela.
-   Pita baca diambil dari stdin.
+   Pita baca diambil dari file dokumen.
    I.S. : sembarang
    F.S. : currentChar adalah karakter pertama pada pita
           Jika currentChar != MARK maka EOP akan padam (false)
@@ -36,15 +36,29 @@ void ADV()
 void CharCOMMAND()
 {
     pita = stdin;
-    ADV();
+    ADVCharCMD();
 }
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
    Karakter pertama yang ada pada pita posisinya adalah pada jendela.
    Pita baca diambil dari stdin.
    I.S. : sembarang
    F.S. : currentChar adalah karakter pertama pada pita
-          Jika currentChar != MARK maka EOP akan padam (false)
-          Jika currentChar = MARK maka EOP akan menyala (true) */
+          Jika currentChar != ENTER maka EOP akan padam (false)
+          Jika currentChar = ENTER maka EOP akan menyala (true) */
+
+void ADVCharCMD()
+{
+    retval = fscanf(pita, "%c", &currentChar);
+    EOP = (currentChar == ENTER);
+    if (EOP) {
+        fclose(pita);
+    }
+}
+/* Pita dimajukan satu karakter.
+   I.S. : Karakter pada jendela = currentChar, currentChar != ENTER
+   F.S. : currentChar adalah karakter berikutnya dari currentChar yang lama,
+          currentChar mungkin = ENTER
+          Jika  currentChar = ENTER maka EOP akan menyala (true) */
 
 char GetCC()
 {

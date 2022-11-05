@@ -4,9 +4,10 @@
 #define MESIN_KARAKTER
 
 #include <stdio.h>
-#include "boolean.h"
+#include "src/boolean.h"
 
 #define MARK '.'
+#define ENTER '\n'
 
 /* State Mesin */
 extern char currentChar;
@@ -15,7 +16,7 @@ extern boolean EOP;
 void START();
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
    Karakter pertama yang ada pada pita posisinya adalah pada jendela.
-   Pita baca diambil dari stdin.
+   Pita baca diambil dari file dokumen.
    I.S. : sembarang
    F.S. : currentChar adalah karakter pertama pada pita
           Jika currentChar != MARK maka EOP akan padam (false)
@@ -34,8 +35,15 @@ void CharCOMMAND();
    Pita baca diambil dari stdin.
    I.S. : sembarang
    F.S. : currentChar adalah karakter pertama pada pita
-          Jika currentChar != MARK maka EOP akan padam (false)
-          Jika currentChar = MARK maka EOP akan menyala (true) */
+          Jika currentChar != ENTER maka EOP akan padam (false)
+          Jika currentChar = ENTER maka EOP akan menyala (true) */
+
+void ADVCharCMD();
+/* Pita dimajukan satu karakter.
+   I.S. : Karakter pada jendela = currentChar, currentChar != ENTER
+   F.S. : currentChar adalah karakter berikutnya dari currentChar yang lama,
+          currentChar mungkin = ENTER
+          Jika  currentChar = ENTER maka EOP akan menyala (true) */
 
 char GetCC();
 /* Mengirimkan currentChar */
