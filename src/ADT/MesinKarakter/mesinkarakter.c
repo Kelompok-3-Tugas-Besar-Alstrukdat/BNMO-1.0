@@ -1,4 +1,4 @@
-#include "src/ADT/MesinKarakter/mesinkarakter.h"
+#include "mesinkarakter.h"
 
 /* State Mesin */
 char currentChar;

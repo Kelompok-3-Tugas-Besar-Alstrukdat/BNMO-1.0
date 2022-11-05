@@ -4,7 +4,7 @@
 #define MESIN_KARAKTER
 
 #include <stdio.h>
-#include "src/boolean.h"
+#include "../../boolean.h"
 
 #define MARK '.'
 #define ENTER '\n'
