@@ -3,8 +3,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "boolean.h"
-#include "mesinkata.h"
+#include "../../boolean.h"
+#include "../MesinKata/mesinkata.h"
 
 #define INIT_SIZE 50
 
