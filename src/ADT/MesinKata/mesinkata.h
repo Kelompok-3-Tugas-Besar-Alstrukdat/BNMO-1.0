@@ -3,11 +3,12 @@
 #define MESIN_KATA
 
 #include <stdio.h>
-#include "boolean.h"
-#include "mesinkarakter.h"
+#include "src/boolean.h"
+#include "src/ADT/MesinKarakter/mesinkarakter.h"
 
 #define NMax 100
 #define BLANK ' '
+#define ENTER '\n'
 
 typedef struct
 {
@@ -18,7 +19,6 @@ typedef struct
 /* State Mesin Kata */
 extern boolean EndWord;
 extern Word currentWord;
-extern Word currentCMD;
 
 /* Primitif Umum */
 void IgnoreBlanks();
@@ -50,8 +50,22 @@ void CopyWord();
 void COMMAND();
 /* I.S. : currentChar sembarang
    F.S. : EndWord = true, dan currentChar = ENTER;
-          atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
-          currentChar karakter pertama sesudah karakter terakhir kata */
+          atau EndWord = false, currentWord adalah command yang sudah diakuisisi,
+          currentChar karakter pertama sesudah karakter terakhir command */
+
+void ADVCMD();
+/* I.S. : currentChar adalah karakter pertama command yang akan diakuisisi
+   F.S. : currentWord adalah command terakhir yang sudah diakuisisi,
+          currentChar adalah karakter pertama dari command berikutnya, mungkin ENTER
+          Jika currentChar = ENTER, EndWord = true.
+   Proses : Akuisisi kata menggunakan procedure CopyCMD */
+
+void CopyCMD();
+/* Mengakuisisi command, menyimpan dalam currentWord
+   I.S. : currentChar adalah karakter pertama dari command
+   F.S. : currentWord berisi command yang sudah diakuisisi;
+          currentChar = ENTER;
+          currentChar adalah karakter sesudah karakter terakhir yang diakuisisi. */
 
 void printWord(Word Kata);
 /* Menampilkan Kata ke layar

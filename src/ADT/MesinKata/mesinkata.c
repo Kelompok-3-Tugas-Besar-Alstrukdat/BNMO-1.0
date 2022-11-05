@@ -1,9 +1,8 @@
-#include "mesinkata.h"
+#include "src/ADT/MesinKata/mesinkata.h"
 
 /* State Mesin Kata */
 boolean EndWord;
 Word currentWord;
-Word currentCMD;
 
 void IgnoreBlanks()
 {
@@ -82,21 +81,53 @@ void CopyWord()
 void COMMAND()
 {
     CharCOMMAND();
-    IgnoreBlanks();
-    if (currentChar == MARK)
+    if (currentChar == ENTER)
     {
         EndWord = true;
     }
     else
     {
         EndWord = false;
-        ADVWord();
+        ADVCMD();
     }
 }
 /* I.S. : currentChar sembarang
    F.S. : EndWord = true, dan currentChar = ENTER;
-          atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
-          currentChar karakter pertama sesudah karakter terakhir kata */
+          atau EndWord = false, currentWord adalah command yang sudah diakuisisi,
+          currentChar karakter pertama sesudah karakter terakhir command */
+
+void ADVCMD()
+{
+    if (currentChar == ENTER)
+    {
+        EndWord = true;
+    }
+    else
+    {
+        EndWord = false;
+        CopyCMD();
+    }
+}
+/* I.S. : currentChar adalah karakter pertama command yang akan diakuisisi
+   F.S. : currentWord adalah command terakhir yang sudah diakuisisi,
+          currentChar adalah karakter pertama dari command berikutnya, mungkin ENTER
+          Jika currentChar = ENTER, EndWord = true.
+   Proses : Akuisisi kata menggunakan procedure CopyCMD */
+
+void CopyCMD()
+{
+    currentWord.Length = 0;
+    while (currentChar != ENTER)
+    {
+        currentWord.TabWord[currentWord.Length++] = currentChar;
+        ADVCharCMD();
+    }
+}
+/* Mengakuisisi command, menyimpan dalam currentWord
+   I.S. : currentChar adalah karakter pertama dari command
+   F.S. : currentWord berisi command yang sudah diakuisisi;
+          currentChar = ENTER;
+          currentChar adalah karakter sesudah karakter terakhir yang diakuisisi. */
 
 void printWord(Word Kata)
 {
