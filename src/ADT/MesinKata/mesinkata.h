@@ -3,8 +3,8 @@
 #define MESIN_KATA
 
 #include <stdio.h>
-#include "src/boolean.h"
-#include "src/ADT/MesinKarakter/mesinkarakter.h"
+#include "../../boolean.h"
+#include "../MesinKarakter/mesinkarakter.h"
 
 #define NMax 100
 #define BLANK ' '

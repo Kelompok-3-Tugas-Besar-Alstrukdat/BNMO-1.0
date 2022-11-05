@@ -1,4 +1,4 @@
-#include "src/ADT/MesinKata/mesinkata.h"
+#include "mesinkata.h"
 
 /* State Mesin Kata */
 boolean EndWord;
@@ -26,7 +26,7 @@ void STARTWORD()
     else
     {
         EndWord = false;
-        ADVWord();
+        ADVWORD();
     }
 }
 /* I.S. : currentChar sembarang
