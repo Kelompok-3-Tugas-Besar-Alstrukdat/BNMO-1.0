@@ -50,9 +50,6 @@ void ADVCharCMD()
 {
     retval = fscanf(pita, "%c", &currentChar);
     EOP = (currentChar == ENTER);
-    if (EOP) {
-        fclose(pita);
-    }
 }
 /* Pita dimajukan satu karakter.
    I.S. : Karakter pada jendela = currentChar, currentChar != ENTER
