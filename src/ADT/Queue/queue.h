@@ -4,8 +4,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "boolean.h"
-#include "mesinkata.h"
+#include "../../boolean.h"
+#include "../MesinKata/mesinkata.h"
 
 #define IDX_UNDEF -1
 #define INIT_CAPACITY 50
