@@ -11,4 +11,8 @@
 // dengan rentang nilai 0-100 (inclusive)
 int RandomNumber();
 
+// Prosedur yang menjalankan game RNG
+// Prekondisi: tebakan merupakan bilangan bulat (integer)
+void runRNG();
+
 #endif
