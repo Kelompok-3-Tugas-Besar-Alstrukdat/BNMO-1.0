@@ -15,6 +15,7 @@ ArrayDin MakeArrayDin()
     while (array.Elmt == NULL);
     array.Capacity = INIT_SIZE;
     array.Neff = 0;
+    return array;
 }
 
 /**
