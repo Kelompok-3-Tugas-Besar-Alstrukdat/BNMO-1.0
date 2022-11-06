@@ -71,6 +71,9 @@ void printWord(Word Kata);
 /* Menampilkan Kata ke layar
    Prekondisi: Kata terdifinisi */
 
+void toStr(Word Kata, char *string);
+/* Mengubah kata yang merupakan tipe kata menjadi string */
+
 int toInt (Word Kata);
 /* Mengubah kata yang merupakan angka numerik menjadi integer
    Prekondisi : Kata merupakan bilangan numerik */

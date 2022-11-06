@@ -139,6 +139,17 @@ void printWord(Word Kata)
 /* Menampilkan Kata ke layar
    Prekondisi: Kata terdifinisi */
 
+void toStr(Word Kata, char *string)
+{
+    int i;
+    for (i = 0; i < Kata.Length; i++)
+    {
+        string[i] = Kata.TabWord[i];
+    }
+    string[i] = '\0';
+}
+/* Mengubah kata yang merupakan tipe kata menjadi string */
+
 int toInt (Word Kata)
 {
     int base;
