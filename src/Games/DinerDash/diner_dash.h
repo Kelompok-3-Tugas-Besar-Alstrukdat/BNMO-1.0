@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include "../RNG/rng.h"
 
 
 #ifndef Diner_Dash
@@ -27,4 +28,8 @@ typedef struct
 	Count Jml; // Jumlah antrian masak(pelanggan) dan antrian served (makanan jadi)
 } Diner;
 
+void create_empty(Diner X);
+void diner_del(Diner X, Id xid, Duration d);
+void diner_ins(Diner, Diner Y, Id xid);
+void diner_dash();
 #endif
