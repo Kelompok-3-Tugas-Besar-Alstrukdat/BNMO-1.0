@@ -185,7 +185,6 @@ void diner_dash(){
                 printf("Makanan M%d sudah busuk, harus dibuang.\n",saji.Elmt[i].Mid);
                 diner_del(saji,saji.Elmt[i].Mid,saji.Elmt[i].Dur);
                 
-                //disini delete dulu si masakan dari Q masak, pindahin ke Q served
 
             }
         }
