@@ -11,9 +11,9 @@
 #define INIT_CAPACITY 50
 
 /* Definisi elemen dan address */
-typedef int ElType;
+typedef int QueueType;
 typedef struct {
-	ElType *buffer;
+	QueueType *buffer;
 	int idxHead;
 	int idxTail;
     int capacity;
@@ -55,12 +55,12 @@ int length(Queue q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong */
 
 /* *** Primitif Add/Delete *** */
-void enqueue(Queue *q, ElType val);
+void enqueue(Queue *q, QueueType val);
 /* Proses: Menambahkan val pada q dengan aturan FIFO */
 /* I.S. q mungkin kosong, tabel penampung elemen q mungkin penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL bertambah satu */
 
-void dequeue(Queue *q, ElType *val);
+void dequeue(Queue *q, QueueType *val);
 /* Proses: Menghapus val pada q dengan aturan FIFO */
 /* I.S. q tidak mungkin kosong */
 /* F.S. val = nilai elemen HEAD pd I.S., semua elemen bergeser ke kiri, dan q mungkin kosong */

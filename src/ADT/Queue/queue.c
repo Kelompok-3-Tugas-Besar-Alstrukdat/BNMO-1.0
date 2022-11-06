@@ -13,7 +13,7 @@ void CreateQueue(Queue *q)
 {
     do
     {
-        (*q).buffer = (ElType *) malloc (INIT_CAPACITY * sizeof(ElType));
+        (*q).buffer = (QueueType *) malloc (INIT_CAPACITY * sizeof(QueueType));
     }
     while ((*q).buffer == NULL);
     (*q).capacity = INIT_CAPACITY;
@@ -57,7 +57,7 @@ int length(Queue q)
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
 
 /* *** Primitif Add/Delete *** */
-void enqueue(Queue *q, ElType val)
+void enqueue(Queue *q, QueueType val)
 {
     if (isFull(*q))
     {
@@ -75,7 +75,7 @@ void enqueue(Queue *q, ElType val)
 /* I.S. q mungkin kosong, tabel penampung elemen q mungkin penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL bertambah satu */
 
-void dequeue(Queue *q, ElType *val)
+void dequeue(Queue *q, QueueType *val)
 {
     (*val) = HEAD(*q);
     if (IDX_TAIL(*q) == 0)
