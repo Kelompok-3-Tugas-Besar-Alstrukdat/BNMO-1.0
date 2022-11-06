@@ -124,6 +124,6 @@ void PrintArrayDin(ArrayDin array)
     {
         printf("%d. ", (i+1));
         printWord(array.Elmt[i]);
-        printf('\n');
+        printf("\n");
     }
 }
