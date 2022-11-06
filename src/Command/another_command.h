@@ -6,6 +6,8 @@
 #include "../boolean.h"
 #include "../ADT/Array/arraydin.h"
 
+ArrayDin validCOMMAND();
+
 boolean isCOMMAND();
 
 #endif
