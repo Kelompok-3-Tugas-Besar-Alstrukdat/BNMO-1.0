@@ -1,6 +1,6 @@
 // File: rng.h
-#ifndef RNG
-#define RNG
+#ifndef _RNG_
+#define _RNG_
 
 #include <stdio.h>
 #include <stdlib.h>
