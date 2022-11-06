@@ -15,9 +15,9 @@ void IgnoreBlanks()
    I.S. : currentChar sembarang
    F.S. : currentChar ≠ BLANK atau currentChar = MARK */
 
-void STARTWORD()
+void STARTWORD(char *filename)
 {
-    START();
+    START(filename);
     IgnoreBlanks();
     if (currentChar == MARK)
     {
