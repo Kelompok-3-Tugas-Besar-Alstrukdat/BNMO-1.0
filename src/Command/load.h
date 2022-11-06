@@ -1,5 +1,5 @@
-#ifndef LOAD
-#define LOAD
+#ifndef _LOAD_
+#define _LOAD_
 
 #include <stdio.h>
 #include "../ADT/Array/arraydin.h"
