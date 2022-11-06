@@ -61,6 +61,7 @@ void main()
                 j++;
             }
         }
+        filename[j] = '\0';
         Game = LOADGAME(filename);
     }
     while (!isWordEqual(INPUT,validCOMMAND().Elmt[8]))
