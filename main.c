@@ -73,7 +73,7 @@ void main()
         {
             if ((isWordEqual(INPUT, validCOMMAND().Elmt[0])) || (isWordEqual(INPUT, validCOMMAND().Elmt[1])))
             {
-                printf('BNMO sudah dijalankan.');
+                printf("BNMO sudah dijalankan.");
             }
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[2])))
             {
