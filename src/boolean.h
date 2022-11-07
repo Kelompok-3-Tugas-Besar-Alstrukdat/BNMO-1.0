@@ -1,6 +1,6 @@
 /*File : boolean.h*/
-#ifndef boolean_H
-#define boolean_H
+#ifndef _BOOLEAN_
+#define _BOOLEAN_
 
 #define boolean unsigned char
 #define true 1
