@@ -6,7 +6,7 @@ Word currentWord;
 
 void IgnoreBlanks()
 {
-    while (currentChar == BLANK)
+    while (currentChar == BLANK || currentChar == ENTER)
     {
         ADV();
     }
@@ -57,7 +57,7 @@ void ADVWORD()
 void CopyWord()
 {
     currentWord.Length = 0;
-    while ((currentChar != BLANK) && (currentChar != MARK))
+    while ((currentChar != MARK) && (currentChar != ENTER))
     {
         // jika lebih akan terpotong
         if (currentWord.Length < NMax)
@@ -135,6 +135,7 @@ void printWord(Word Kata)
     {
         printf("%c", Kata.TabWord[i]);
     }
+    printf("\n");
 }
 /* Menampilkan Kata ke layar
    Prekondisi: Kata terdifinisi */
@@ -152,16 +153,10 @@ void toStr(Word Kata, char *string)
 
 int toInt (Word Kata)
 {
-    int base;
     int num = 0;
     for (int i = 0; i < Kata.Length; i++)
     {
-        base = 1;
-        for (int j = (Kata.Length - 1); j > i; j--)
-        {
-            base *= 10;
-        }
-        num += ((Kata.TabWord[i] - '0') * base);
+        num += ((Kata.TabWord[i] - '0') * (pow(10,(Kata.Length - 1 - i))));
     }
     return num;
 }

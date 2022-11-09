@@ -3,6 +3,7 @@
 #define MESIN_KATA
 
 #include <stdio.h>
+#include <math.h>
 #include "../../boolean.h"
 #include "../MesinKarakter/mesinkarakter.h"
 
