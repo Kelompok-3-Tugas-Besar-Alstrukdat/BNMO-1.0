@@ -177,10 +177,12 @@ void main()
 
         if (isCOMMAND(INPUT))
         {
+            // INPUT == START atau INPUT == LOAD
             if ((isWordEqual(INPUT, validCOMMAND().Elmt[0])) || (isWordEqual(INPUT, validCOMMAND().Elmt[1])))
             {
                 printf("BNMO sudah dijalankan.\n");
             }
+            // INPUT == SAVE
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[2])))
             {
                 if (validExtension(filename))
@@ -194,10 +196,12 @@ void main()
                 }
                 
             }
+            // INPUT == CREATEGAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[3])))
             {
 
             }
+            // INPUT == LISTGAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[4])))
             {
                 printf("Berikut adalah daftar game yang tersedia.\n");
@@ -207,18 +211,22 @@ void main()
                     printWord(Game.Elmt[i]);
                 }
             }
+            // INPUT == DELETEGAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[5])))
             {
 
             }
+            // INPUT == QUEUEGAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[6])))
             {
 
             }
+            // INPUT == PLAYGAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[7])))
             {
 
             }
+            // INPUT == SKIP GAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[8])))
             {
                 int idx = 5, n = 0;
@@ -239,10 +247,12 @@ void main()
                     printf("Tidak ada permainan lagi dalam daftar game-mu.\n");
                 }
             }
+            // INPUT == QUIT
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[9])))
             {
                 printf("Anda keluar dari game BNMO.\nBye bye ...\n");
             }
+            // INPUT == HELP
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[10])))
             {
                 Help();
