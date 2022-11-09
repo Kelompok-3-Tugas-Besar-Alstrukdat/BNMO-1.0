@@ -10,7 +10,7 @@ void Create(ArrayDin *Game){
     printf("Masukkan nama game yang akan ditambahkan: ");
     COMMAND();
     while((cek == true) && (i < Game->Neff)) {
-        if (isWordEqual(currentWord,Game->Elmt[i]){
+        if (isWordEqual(currentWord,Game->Elmt[i])){
             cek = false;
         }
         i++;
