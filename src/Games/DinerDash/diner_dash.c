@@ -64,7 +64,8 @@ void diner_dash(){
         printf("Daftar Pesanan\n");
         printf("Makanan\t| Durasi Memasak\t| Ketahanan\t| Harga\n");
         printf("-----------------------------------------------------------");
-        for (i=0;i<daftarr;i++){  //pengisian komponen makanana pesanan
+        //Pengisian Komponen - komponen dalam tiap masakan
+        for (i=0;i<daftarr;i++){  
             if (daftar->Elmt[i].Harga == -1){
                 x = RandomNumber();
                 while ((x < 10) && (x > 50)){
@@ -85,6 +86,7 @@ void diner_dash(){
                 daftar->Jml += 1;
             }
         }
+        //Menampilkan daftar pesanan
         for (i=0 ;i<(daftar->Jml);i++){       
             printf("M%d\t| %d\t| %d\t| %d\n", daftar->Elmt[i].Mid, daftar->Elmt[i].Dur, daftar->Elmt[i].Tahan, daftar->Elmt[i].Harga);
         }
@@ -92,29 +94,33 @@ void diner_dash(){
         printf("Daftar Makanan yang sedang dimasak\n"); 
         printf("Makanan\t| Sisa durasi memasak\n");
         printf("-------------------------------------------");
+        ////Menampilkan daftar masakan yang sedang dimasak
         if (masak->Jml > 0){
-            for (i=0;i<masak->Jml;i++){ //ini buat antrian masakan yang lagi dimasak
+            for (i=0;i<masak->Jml;i++){ 
                 printf("M%d\t| %d\n", masak->Elmt[i].Mid, masak->Elmt[i].Tahan);
             }
         }
         else{
-            printf("\t\t|\n"); //ini kalo misal masih kosong masakan yang mau dimasak
+            printf("\t\t|\n"); 
         }
         printf("\n");
         printf("Daftar Makanan yang dapat disajikan\n");
         printf("Makanan\t| Sisa ketahanan makanan\n");
         printf("-------------------------------------------");
-        if (saji->Jml > 0){ //ini buat masakan yang udah jadi gitu
+        //Menampilkan daftar makanan yang sudah bisa di-serve
+        if (saji->Jml > 0){ 
             for (i=0;i<saji->Jml;i++){
                 printf("M%d\t| %d\n", saji->Elmt[i].Mid, saji->Elmt[i].Tahan);
             }      
         }
         else{
-            printf("\t\t|\n");//kalo belum ada yg bisa di-serve
+            printf("\t\t|\n");
         }
         
+        //Memasukkan Command
         printf("MASUKKAN COMMAND: ");
-        scanf("%s %d",&cmd,&num); 
+        scanf("%s %d",&cmd,&num);  // MASIH BELUM NGERTI PAKE MESIN KATANYA GIMANA
+        //Command COOK
         if (cmd == "COOK"){
             if(((num>=0) && (num<=6)) && (masak->Jml <= 5) && (num < daftar->Jml)){ 
                 printf("Berhasil memasak M%d\n",num);
@@ -129,7 +135,7 @@ void diner_dash(){
                 masak->Jml += 1;
                 daftarr += 1; //daftar pesanan nanti bakal nambah 1
 
-                //ini buat ngurangin semua durasi dan ketahanan masakan saat command berhasil
+                //Mengurangi semua durasi dan ketahanan makanan di daftar serve dan masak
                 for (i = 0;i<(masak->Jml);i++){
                     masak->Elmt[i].Dur -= 1;
                 }
@@ -143,6 +149,7 @@ void diner_dash(){
             }
             
         }
+        //Command SERVE
         else if(cmd == "SERVE"){
             if((num>=0) && (num<=6)) {
                 if((antri_awal[idx] == num) && (saji->Elmt[0].Mid == num))  {
@@ -151,7 +158,7 @@ void diner_dash(){
                     Count += 1;
                     daftarr+= 1;
                     idx += 1;
-                //ini buat ngurangin semua durasi dan ketahanan masakan saat command berhasil    
+                    //Mengurangi semua durasi dan ketahanan makanan di daftar serve dan masak
                     for (i = 0;i<(masak->Jml);i++){
                         masak->Elmt[i].Dur -= 1;
                     }
@@ -168,9 +175,23 @@ void diner_dash(){
                 printf("Masakan M%d tidak ada di menu!\n",num);
             }
         }
+        // Command SKIP
+        else if (cmd=="SKIP"){
+            //Mengurangi semua durasi dan ketahanan makanan di daftar serve dan masak
+            for (i = 0;i<(masak->Jml);i++){
+                masak->Elmt[i].Dur -= 1;
+            }
+            for (i = 0;i<(saji->Jml);i++){
+                saji->Elmt[i].Tahan -= 1;
+            }
+            daftarr+= 1;
+            printf("Berhasil SKIP!\n");
+        }
         else{
             printf("Masukkan salah!\n");
         }
+
+        //Cek apakah ada masakan yang sudah bisa pindah ke Serve dan apakah ada makanan di Serve yang sudah tidak layak
         for(i=0;i<masak->Jml;i++){
             if (masak->Elmt[i].Dur == 0){
                 printf("Berhasil memasak M%d.\n",masak->Elmt[i].Mid);
@@ -191,8 +212,3 @@ void diner_dash(){
         printf("=======================================");      
     }
 }
-
-//yang belum dipikirkan : 
-
-//2. cara mengisi  variabel"cmd" sama "num" dari file.txt nya
-//3. *baca2 dulu... 
