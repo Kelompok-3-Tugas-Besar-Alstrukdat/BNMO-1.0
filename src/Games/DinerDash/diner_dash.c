@@ -134,6 +134,7 @@ void main(){
             cmd.Length = 4;
         }
         else{
+            
             while(currentWord.TabWord[i] != ' '){
                 cmd.TabWord[i] = currentWord.TabWord[i];
                 i++;
