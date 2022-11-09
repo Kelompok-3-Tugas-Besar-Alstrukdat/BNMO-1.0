@@ -4,24 +4,11 @@
 #include "../ADT/Array/arraydin.h"
 
 
-void Create(){
+void Create(ArrayDin *Game){
     char inp[20];
-    ArrayDin Game = MakeArrayDin();
-    char filename[50] = "docs/";
     int i = 0;
     int j = 0,cek=0,leng;
     int prin=0;
-
-    STARTWORD("docs/config.txt");
-    while (!EndWord){
-        Game.Elmt[i].Length = currentWord.Length;
-        for (int j = 0; j < currentWord.Length; j++){
-            Game.Elmt[i].TabWord[j] = currentWord.TabWord[j];
-        }
-        ADVWORD();
-        i++;
-    }
-    Game.Neff = i;
     
     printf("Masukkan nama game yang akan ditambahkan: ");
     scanf("%s",&inp);
