@@ -86,7 +86,11 @@ void InsertLast(ArrayDin *array, ElType el)
     if ((*array).Neff == (*array).Capacity)
     {
         (*array).Capacity *= 2;
-        realloc((*array).Elmt, GetCapacity(*array));
+        do
+        {
+            realloc((*array).Elmt, GetCapacity(*array));
+        }
+        while ((*array).Elmt == NULL);
     }
     int i = (*array).Neff;
     (*array).Elmt[i].Length = el.Length;
