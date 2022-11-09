@@ -62,14 +62,22 @@ void enqueue(Queue *q, QueueType val)
     if (isFull(*q))
     {
         CAPACITY(*q) *= 2;
-        realloc((*q).buffer, CAPACITY(*q));
+        do
+        {
+            realloc((*q).buffer, CAPACITY(*q));
+        }
+        while ((*q).buffer == NULL);
     }
     if (isEmpty(*q))
     {
         IDX_HEAD(*q) = 0;
     }
     IDX_TAIL(*q)++;
-    TAIL(*q) = val;
+    TAIL(*q).Length = val.Length;
+    for (int i = 0; i < val.Length; i++)
+    {
+        TAIL(*q).TabWord[i] = val.TabWord[i];
+    }
 }
 /* Proses: Menambahkan val pada q dengan aturan FIFO */
 /* I.S. q mungkin kosong, tabel penampung elemen q mungkin penuh */
@@ -77,7 +85,11 @@ void enqueue(Queue *q, QueueType val)
 
 void dequeue(Queue *q, QueueType *val)
 {
-    (*val) = HEAD(*q);
+    (*val).Length = HEAD(*q).Length;
+    for (int i = 0; i < IDX_TAIL(*q); i++)
+    {
+        (*val).TabWord[i] = HEAD(*q).TabWord[i + 1];
+    }
     if (IDX_TAIL(*q) == 0)
     {
         IDX_HEAD(*q) = IDX_UNDEF;
@@ -86,7 +98,11 @@ void dequeue(Queue *q, QueueType *val)
     {
         for (int i = 0; i < IDX_TAIL(*q); i++)
         {
-            (*q).buffer[i] = (*q).buffer[i + 1];
+            (*q).buffer[i].Length = (*q).buffer[i + 1].Length;
+            for (int j = 0; j < (*q).buffer[i].Length; j++)
+            {
+                (*q).buffer[i].TabWord[j] = (*q).buffer[i].TabWord[j + 1];
+            }
         }
     }
     IDX_TAIL(*q)--;
@@ -107,7 +123,7 @@ void displayQueue(Queue q)
         printf("[");
         for (int i = 0; i < IDX_TAIL(q); i++)
         {
-            printf("%d,", q.buffer[i]);
+            printWord(q.buffer[i]);
         }
         printf("%d]\n", TAIL(q));
     }

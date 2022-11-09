@@ -11,7 +11,7 @@
 #define INIT_CAPACITY 50
 
 /* Definisi elemen dan address */
-typedef int QueueType;
+typedef Word QueueType;
 typedef struct {
 	QueueType *buffer;
 	int idxHead;
