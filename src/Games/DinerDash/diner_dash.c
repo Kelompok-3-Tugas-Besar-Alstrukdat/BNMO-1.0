@@ -1,5 +1,5 @@
 #include "diner_dash.h"
-
+#include "../RNG/rng.c" //ternyata rng.h ilang
 
 void create_empty(Diner *X){
     int i = 0;
