@@ -21,5 +21,5 @@ void Help(){
     printf("9. SKIP GAME\n");
     printf("   Enter command SKIPGAME <n>, melewatkan permainan sebanyak n\n");
     printf("10. QUIT\n");
-    printf("   Enter command QUIT, keluar dari program");
+    printf("    Enter command QUIT, keluar dari program");
 }
