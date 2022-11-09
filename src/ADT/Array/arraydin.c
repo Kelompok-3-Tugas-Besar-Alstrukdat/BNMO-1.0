@@ -113,17 +113,3 @@ void DeleteAt(ArrayDin *array, IdxType i)
         }
     }
 }
-
-/**
- * Fungsi untuk menampilkan isi dari array.Elmt
- * Prekondisi: array terdefinisi, i di antara 0..Length(array).
- */
-void PrintArrayDin(ArrayDin array)
-{
-    for (int i = 0; i < array.Neff; i++)
-    {
-        printf("%d. ", (i+1));
-        printWord(array.Elmt[i]);
-        printf("\n");
-    }
-}

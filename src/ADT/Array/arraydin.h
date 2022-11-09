@@ -73,10 +73,4 @@ void InsertLast(ArrayDin *array, ElType el);
  */
 void DeleteAt(ArrayDin *array, IdxType i);
 
-/**
- * Fungsi untuk menampilkan isi dari array.Elmt
- * Prekondisi: array terdefinisi, i di antara 0..Length(array).
- */
-void PrintArrayDin(ArrayDin array);
-
 #endif
