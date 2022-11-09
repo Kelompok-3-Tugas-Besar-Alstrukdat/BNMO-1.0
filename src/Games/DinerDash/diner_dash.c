@@ -68,7 +68,7 @@ void diner_dash(){
         for (i=0;i<daftarr;i++){  
             if (daftar->Elmt[i].Harga == -1){
                 x = RandomNumber();
-                while ((x < 10) && (x > 50)){
+                while ((x < 10) || (x > 50)){
                     x = RandomNumber();
                 }
                 daftar->Elmt[i].Harga = x*1000;

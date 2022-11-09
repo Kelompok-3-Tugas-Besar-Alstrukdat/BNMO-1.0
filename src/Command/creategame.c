@@ -5,51 +5,37 @@
 
 
 void Create(ArrayDin *Game){
-    char inp[20];
-    int i = 0;
-    int j = 0,cek=0,leng;
-    int prin=0;
-    
+    int i = 1;
+    boolean cek = true;
     printf("Masukkan nama game yang akan ditambahkan: ");
-    scanf("%s",&inp);
-
-
-    for (i=0;i<Game.Neff;i++){
-        if (cek == 0){
-
-            for (j = 0; j < Game.Elmt[i].Length;j++){
-                if(Game.Elmt[i].TabWord[j] == inp[j]){
-                    cek += 1;
-                }
-                leng += 1;
-            }
-
-            if (cek == Game.Elmt[i].Length){
-                //printf("Game dengan nama tersebut sudah ada\n");
-                cek = 0;
-                leng = 0;
-                
-            }
-            else{
-                cek = -99;
-            }
-            if (cek==-99){
-                printf("Game berhasil ditambahkan!\n");
-                cek = -1;
-                for (int k = 0; k<leng;k++){
-                    Game.Elmt[Game.Neff].TabWord[k] = inp[k];
-                }
-                Game.Elmt[Game.Neff].Length = leng;
-                Game.Neff+=1;
-                prin = -99;
-                break;
-            }            
-
+    COMMAND();
+    while((cek == true) && (i < Game->Neff)) {
+        if (isWordEqual(currentWord,Game->Elmt[i]){
+            cek = false;
         }
+        i++;
     }
-    if (prin != -99){
-        printf("Game dengan nama tersebut sudah ada\n");
+    if (cek == true){
+        printf("Game dengan nama tersebut sudah ada!\n");
     }
+    else{
+        printf("Berhasil menambahkan game!\n");
+        for (i=0;i < currentWord.Length;i++){
+            Game->Elmt[Game->Neff].TabWord[i] = currentWord.TabWord[i];
+        }
+        Game->Neff++;
+        int n = toInt (Game->Elmt[0]);
+        n++;
+        int dig = 0;
+        while(n>0){
+            n = n/10;
+            dig +=1 ;
+        }
+        for (i=0;i<dig;i++){
+            Game->Elmt[0].TabWord[i] = toChar().[i];
+        }
         
-    
+    }
+
+
 }
