@@ -1,15 +1,15 @@
 #include <stdio.h>
-#include <stdlib.h>
-void help(){
-    printf("Help");
-    printf("1. Start");
-    printf("2. Load");
-    printf("3. Create Game");
-    printf("4. List Game");
-    printf("5. Delete Game");
-    printf("6. Queue Game");
-    printf("7. Play Game");
-    printf("8. Play Game");
-    printf("9. Skip Game");
-    printf("10. Quit");
+
+void Help(){
+    printf("HELP\n");
+    printf("1. Start\n");
+    printf("2. Load\n");
+    printf("3. Create Game\n");
+    printf("4. List Game\n");
+    printf("5. Delete Game\n");
+    printf("6. Queue Game\n");
+    printf("7. Play Game\n");
+    printf("8. Play Game\n");
+    printf("9. Skip Game\n");
+    printf("10. Quit\n");
 }
