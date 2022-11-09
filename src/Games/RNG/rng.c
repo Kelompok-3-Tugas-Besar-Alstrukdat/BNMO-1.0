@@ -1,6 +1,9 @@
 // Game RNG
 // Menguji seberapa beruntung Anda dengan menebak sebuah nilai
-#include "rng.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include "../../ADT/MesinKata/mesinkata.h"
 
 // Fungsi untuk menentukan nilai integer yang random,
 // dengan rentang nilai 0-100 (inclusive)
