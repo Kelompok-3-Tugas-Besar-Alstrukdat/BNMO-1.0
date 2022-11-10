@@ -138,6 +138,7 @@ void runDinerDash()
 {
     printf("Selamat Datang di Diner Dash!\n");
     int Saldo = 0;
+    boolean valid = false;
     DinerQ DQDash;
     DinerArr DACook, DAServe;
     
@@ -161,14 +162,49 @@ void runDinerDash()
         printf("--------------------------------------------\n");
         displayQueueDQ(DQDash);
 
+        if (valid)
+        {
+            // Proses Memasak Makanan
+            for (int i = 0; i < DCapacity; i++)
+            {
+                if (DACook.Elmt[i] > 0)
+                {
+                    DACook.Elmt[i]--;
+                }
+                if ((DACook.Elmt[i] == 0) && (DACook.Elmt[i] != Idx_Undef))
+                {
+                    DACook.Elmt[i] = Idx_Undef;
+                    DAServe.Elmt[i] = DQDash.buffer[i].Resistance + 1;
+                    printf("Makanan M%d telah selesai dimasak\n", i);
+                }
+            }
+        }
+
         printf("\nDaftar Makanan yang sedang dimasak\n");
         printf("Makanan | Sisa durasi memasak\n");
         printf("--------------------------------\n");
         for (int i = 0; i < DCapacity; i++)
         {
-            if (DACook.Elmt[i] != Idx_Undef)
+            if (DACook.Elmt[i] > 0)
             {
                 printf("M%d\t| %d\t\n", i, DACook.Elmt[i]);
+            }
+        }
+
+        if (valid)
+        {
+            // Data Ketahanan Makanan yang Telah Siap Disajikan
+            for (int i = 0; i < DCapacity; i++)
+            {
+                if (DAServe.Elmt[i] > 0)
+                {
+                    DAServe.Elmt[i]--;
+                }
+                if ((DAServe.Elmt[i] == 0) && (DACook.Elmt[i] != Idx_Undef))
+                {
+                    DAServe.Elmt[i] = Idx_Undef;
+                    printf("Makanan M%d telah basi dan harus dimasak kembali\n", i);
+                }
             }
         }
 
@@ -177,7 +213,7 @@ void runDinerDash()
         printf("--------------------------------\n");
         for (int i = 0; i < DCapacity; i++)
         {
-            if (DAServe.Elmt[i] != Idx_Undef)
+            if (DAServe.Elmt[i] > 0)
             {
                 printf("M%d\t| %d\t\n", i, DAServe.Elmt[i]);
             }
@@ -211,6 +247,10 @@ void runDinerDash()
         printf("\nMASUKKAN COMMAND: ");
         COMMAND();
         system("cls");
+
+        // Control status masukan command
+        valid = true;
+        
         if (currentWord.Length > 4)
         {
             int i = 0;
@@ -232,102 +272,82 @@ void runDinerDash()
                 }
                 TN.Length = currentWord.Length - i;
                 N = toInt(TN);
+
+                // Input == COOK
+                if (isWordEqual(Input, command.Elmt[0]) && (N >= Idx_Head(DQDash) && N <= Idx_Tail(DQDash)))
+                {
+                    if (DACook.Elmt[N] > 0)
+                    {
+                        valid = false;
+                        printf("Makanan M%d sudah dimasak\n", N);
+                    }
+                    else
+                    {
+                        DACook.Elmt[N] = DQDash.buffer[N].Duration + 1;
+                        printf("Berhasil memasak M%d\n", N);
+                        enqueueDQ(&DQDash, randVal());
+                    }
+                }
+                // Input == SERVE
+                else if (isWordEqual(Input, command.Elmt[1]) && (N >= Idx_Head(DQDash) && N <= Idx_Tail(DQDash)))
+                {
+                    if ((Idx_Head(DQDash) == N) && (DAServe.Elmt[N] > 0))
+                    {
+                        DinerQType val;
+                        dequeueDQ(&DQDash, &val);
+                        Saldo += val.Price;
+                        DAServe.Elmt[N] = Idx_Undef;
+                        printf("Berhasil mengantar M%d\n", N);
+                        enqueueDQ(&DQDash, randVal());
+                    }
+                    else
+                    {
+                        valid = false;
+                        printf("M%d belum dapat disajikan karena M%d belum selesai\n", N, Idx_Head(DQDash));
+                    }
+                }
+                // Input tidak valid
+                else
+                {
+                    printf("Command yang Anda masukkan tidak valid\n");
+                }
             }
-            
+            else
+            {
+                printf("Command yang Anda masukkan tidak valid\n");
+            }
         }
-        else
+        else if (currentWord.Length <= 4)
         {
             for (int i = 0; i < currentWord.Length; i++)
             {
                 Input.TabWord[i] = currentWord.TabWord[i];
             }
             Input.Length = currentWord.Length;
-        }
 
-        // Data Ketahanan Makanan yang Telah Siap Disajikan
-        for (int i = 0; i < DCapacity; i++)
-        {
-            if (DAServe.Elmt[i] >= 0)
+            // Input == SKIP
+            if (isWordEqual(Input, command.Elmt[2]))
             {
-                DAServe.Elmt[i]--;
+                enqueueDQ(&DQDash, randVal());
             }
-            if ((DAServe.Elmt[i] < 0) && (DACook.Elmt[i] != Idx_Undef))
-            {
-                DAServe.Elmt[i] = Idx_Undef;
-                printf("Makanan M%d telah basi dan harus dimasak kembali\n", i);
-            }
-        }
-
-        // Proses Memasak Makanan
-        for (int i = 0; i < DCapacity; i++)
-        {
-            if (DACook.Elmt[i] >= 0)
-            {
-                DACook.Elmt[i]--;
-            }
-            if ((DACook.Elmt[i] < 0) && (DACook.Elmt[i] != Idx_Undef))
-            {
-                DACook.Elmt[i] = Idx_Undef;
-                DAServe.Elmt[i] = DQDash.buffer[i].Resistance;
-                printf("Makanan M%d telah selesai dimasak\n", i);
-            }
-        }
-
-        // Input == COOK
-        if (isWordEqual(Input, command.Elmt[0]) && (N >= Idx_Head(DQDash) && N <= Idx_Tail(DQDash)))
-        {
-            if (DACook.Elmt[N] > 0)
-            {
-                printf("Makanan M%d sudah dimasak\n", N);
-            }
+            // Input tidak valid
             else
             {
-                DACook.Elmt[N] = DQDash.buffer[N].Duration;
-                printf("Berhasil memasak M%d\n", N);
+                printf("Command yang Anda masukkan tidak valid\n");
             }
-            enqueueDQ(&DQDash, randVal());
         }
-        // Input == SERVE
-        else if (isWordEqual(Input, command.Elmt[1]) && (N >= Idx_Head(DQDash) && N <= Idx_Tail(DQDash)))
-        {
-            if ((Idx_Head(DQDash) == N) && (DAServe.Elmt[N] > 0))
-            {
-                DinerQType val;
-                dequeueDQ(&DQDash, &val);
-                Saldo += val.Price;
-                DAServe.Elmt[N] = Idx_Undef;
-                printf("Berhasil mengantar M%d\n", N);
-            }
-            else
-            {
-                printf("M%d belum dapat disajikan karena M%d belum selesai\n", N, Idx_Head(DQDash));
-            }
-            enqueueDQ(&DQDash, randVal());
-        }
-        // Input == SKIP
-        else if (isWordEqual(Input, command.Elmt[2]))
-        {
-            enqueueDQ(&DQDash, randVal());
-        }
-        // Input tidak valid
-        else
-        {
-            printf("Command yang Anda masukkan tidak valid\n");
-        }
-
         printf("=======================================================\n");
-        printf("Kembali ke menu ");
-        countdown();
-        system("cls");
-        
     }
     if (lengthDQ(DQDash) > 7)
     {
-        printf("Permainan telah selesai karena antrian Anda telah melebihi 7 pelanggan\n");
-
+        printf("                   GAME OVER\n");
+        printf("!!! Antrian Anda telah melebihi 7 pelanggan !!!\n");
     }
     else
     {
-        printf("Permainan telah selesai karena Anda telah melayani 15 pelanggan\n");
+        printf("CONGRATULATION\n");
+        printf("$$$ You earned Rp%d,- $$$", Saldo);
     }
+    printf("Back to main page ");
+    countdown();
 }

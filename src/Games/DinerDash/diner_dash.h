@@ -9,7 +9,7 @@
 #include "../../ADT/Array/arraydin.h"
 #include "../../ADT/MesinKata/mesinkata.h"
 
-#define Idx_Undef -999
+#define Idx_Undef -1
 #define DCapacity 20
 
 /* Definisi elemen dan address */
