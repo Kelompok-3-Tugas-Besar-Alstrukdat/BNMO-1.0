@@ -18,12 +18,13 @@
 #include "src/Command/skipgame.c"
 #include "src/Command/help.c"
 #include "src/Command/another_command.c"
+#include "BNMO_display.c"
 
 void fetchBNMO(Word *INPUT)
 {
     do
     {
-        printf("ENTER COMMAND: ");
+        printf("MASUKKAN COMMAND: ");
         COMMAND();
         int i;
         for (i = 0; i < currentWord.Length; i++)
@@ -41,6 +42,11 @@ void fetchBNMO(Word *INPUT)
                 i++;
             }
             (*INPUT).Length = i;
+
+            if (isWordEqual((*INPUT),validCOMMAND().Elmt[0]))
+            {
+                (*INPUT).Length = 0;
+            }
         }
         if (!isCOMMAND(*INPUT))
         {
@@ -64,6 +70,33 @@ void fetchBNMO(Word *INPUT)
     while (!isWordEqual((*INPUT),validCOMMAND().Elmt[0]) && !isWordEqual((*INPUT),validCOMMAND().Elmt[1]));
 }
 
+void backToMainPage()
+{
+    printf("\n\n\n\n\nK E M B A L I  K E  H A L A M A N  U T A M A ");
+    countdown();
+    system("cls");
+}
+
+void changePage()
+{
+    printf("\n\n\n\n\nM O H O N  T U N G G U ");
+    countdown();
+    system("cls");
+    printf("================================================================================\n");
+}
+
+void loadGame(Word game)
+{
+    printf("\n\n\n\n\nS E D A N G  M E M U A T  ");
+    for (int i = 0; i < game.Length; i++)
+    {
+        printf("%c ", game.TabWord[i]);
+    }
+    countdown();
+    system("cls");
+    printf("================================================================================\n");
+}
+
 void main()
 {
     Word INPUT;
@@ -72,7 +105,9 @@ void main()
     CreateQueue(&GameQ);
     char filename[50] = "docs/";
 
-    printf("\nMasukkan command START atau LOAD <namafile>.txt untuk menjalan BNMO.\n");
+    display();
+    printf("================================================================================\n");
+    printf("Masukkan command START atau LOAD <namafile>.txt untuk menjalan BNMO.\n");
     fetchBNMO(&INPUT);
     if (isWordEqual(INPUT,validCOMMAND().Elmt[0]))
     {
@@ -145,9 +180,14 @@ void main()
         while (success == false);
     }
 
+    printf("\n\n\n\n\nM O H O N  T U N G G U ");
+    countdown();
+    system("cls");
+
     while (!isWordEqual(INPUT,validCOMMAND().Elmt[9]))
     {
-        printf("ENTER COMMAND: ");
+        printf("================================================================================\n");
+        printf("MASUKKAN COMMAND: ");
         COMMAND();
         for (int i = 0; i < currentWord.Length; i++)
         {
@@ -187,11 +227,14 @@ void main()
             // INPUT == START atau INPUT == LOAD
             if ((isWordEqual(INPUT, validCOMMAND().Elmt[0])) || (isWordEqual(INPUT, validCOMMAND().Elmt[1])))
             {
+                changePage();
                 printf("BNMO sudah dijalankan.\n");
+                backToMainPage();
             }
             // INPUT == SAVE
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[2])))
             {
+                changePage();
                 if (validExtension(filename))
                 {
                     Save(Game, filename);
@@ -201,16 +244,19 @@ void main()
                 {
                     printf("Harap periksa kembali extension file Anda.\nFormat save: SAVE <namafile>.txt\n");
                 }
-                
+                backToMainPage();
             }
             // INPUT == CREATEGAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[3])))
             {
+                changePage();
                 Create(&Game);
+                backToMainPage();
             }
             // INPUT == LISTGAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[4])))
             {
+                changePage();
                 printf("Berikut adalah daftar game yang tersedia.\n");
                 for (int i = 1; i < Game.Neff; i++)
                 {
@@ -221,21 +267,36 @@ void main()
             // INPUT == DELETEGAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[5])))
             {
+                changePage();
                 DeleteGame(&Game);
+                backToMainPage();
             }
             // INPUT == QUEUEGAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[6])))
             {
+                changePage();
                 QueueGame(&Game, &GameQ);
+                backToMainPage();
             }
             // INPUT == PLAYGAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[7])))
             {
-                PlayGame(&GameQ);
+                if (isEmptyQueue(GameQ))
+                {
+                    changePage();
+                    printf("Daftar antrian Anda kosong. Silahkan tambahkan permainan terlebih dahulu.\n");
+                }
+                else
+                {
+                    loadGame(HEAD(GameQ));
+                    PlayGame(&GameQ);
+                }
+                backToMainPage();
             }
             // INPUT == SKIP GAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[8])))
             {
+                changePage();
                 int idx = 5, n = 0;
                 while (filename[idx] != '\0')
                 {
@@ -253,21 +314,30 @@ void main()
                 {
                     printf("Tidak ada permainan lagi dalam daftar game-mu.\n");
                 }
+                backToMainPage();
             }
             // INPUT == QUIT
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[9])))
             {
-                printf("Anda keluar dari game BNMO.\nBye bye ...\n");
+                system("cls");
+                printf("================================================================================\n");
+                printf("           ^_^ T E R I M A  K A S I H  T E L A H  B E R M A I N ^_^\n");
+                printf("                              B Y E  B Y E ");
+                countdown();
+                system("cls");
             }
             // INPUT == HELP
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[10])))
             {
+                changePage();
                 Help();
             }
         }
         else
         {
+            changePage();
             printf("Command tidak dikenali, silahkan masukkan command yang valid.\n");
+            backToMainPage();
         }
     }
 }
