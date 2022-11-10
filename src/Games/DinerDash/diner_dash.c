@@ -1,5 +1,6 @@
 #include "diner_dash.h"
 
+
 /* *** Kreator *** */
 void CreateDinerQ(DinerQ *dq)
 {

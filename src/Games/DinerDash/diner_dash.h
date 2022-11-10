@@ -44,6 +44,7 @@ typedef struct
 #define     TAIL(dq) (dq).buffer[(dq).idxTail]
 #define CAPACITY(dq) (dq).capacity
 
+
 /* *** Kreator *** */
 void CreateDinerQ(DinerQ *dq);
 /* I.S. sembarang */
