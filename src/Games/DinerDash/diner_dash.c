@@ -165,6 +165,7 @@ void runDinerDash()
             }
         }
 
+
         // Proses Memasak Makanan
         for (int i = 0; i < DCapacity; i++)
         {
