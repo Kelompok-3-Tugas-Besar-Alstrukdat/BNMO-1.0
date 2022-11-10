@@ -3,7 +3,8 @@
 #include "../ADT/MesinKata/mesinkata.h"
 #include "../ADT/Array/arraydin.h"
 
-void Create(ArrayDin *Game){
+void Create(ArrayDin *Game)
+{
     int i = 1;
     boolean cek = true;
     printf("Masukkan nama game yang akan ditambahkan: ");
@@ -27,6 +28,4 @@ void Create(ArrayDin *Game){
         (*Game).Elmt[0].Length = toWord(n).Length;
         printf("Berhasil menambahkan game!\n");
     }
-
-
 }
