@@ -37,12 +37,12 @@ void DeallocateQueue(Queue *q)
 }
 
 /* ********* Prototype ********* */
-boolean isEmpty(Queue q)
+boolean isEmptyQueue(Queue q)
 {
     return (IDX_HEAD(q) == IDX_UNDEF) && (IDX_TAIL(q) == IDX_UNDEF);
 }
 /* Mengirim true jika q kosong: lihat definisi di atas */
-boolean isFull(Queue q)
+boolean isFullQueue(Queue q)
 {
     return IDX_TAIL(q) == (CAPACITY(q) - 1);
 }
@@ -50,16 +50,16 @@ boolean isFull(Queue q)
 /* yaitu IDX_TAIL akan selalu di belakang IDX_HEAD */
 /* IDX_HEAD selalu bernilai 0 */
 
-int length(Queue q)
+int lengthQueue(Queue q)
 {
     return IDX_TAIL(q) + 1;
 }
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
 
 /* *** Primitif Add/Delete *** */
-void enqueue(Queue *q, QueueType val)
+void enqueueQ(Queue *q, QueueType val)
 {
-    if (isFull(*q))
+    if (isFullQueue(*q))
     {
         CAPACITY(*q) *= 2;
         do
@@ -68,7 +68,7 @@ void enqueue(Queue *q, QueueType val)
         }
         while ((*q).buffer == NULL);
     }
-    if (isEmpty(*q))
+    if (isEmptyQueue(*q))
     {
         IDX_HEAD(*q) = 0;
     }
@@ -83,7 +83,7 @@ void enqueue(Queue *q, QueueType val)
 /* I.S. q mungkin kosong, tabel penampung elemen q mungkin penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL bertambah satu */
 
-void dequeue(Queue *q, QueueType *val)
+void dequeueQ(Queue *q, QueueType *val)
 {
     (*val).Length = HEAD(*q).Length;
     for (int i = 0; i < IDX_TAIL(*q); i++)
@@ -114,7 +114,7 @@ void dequeue(Queue *q, QueueType *val)
 /* *** Display Queue *** */
 void displayQueue(Queue q)
 {
-    if (isEmpty(q))
+    if (isEmptyQueue(q))
     {
         printf("[]\n");
     }
