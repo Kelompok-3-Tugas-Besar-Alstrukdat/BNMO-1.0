@@ -1,4 +1,9 @@
-void PLAYGAME (queue *game){
+#include <stdio.h>
+#include "../boolean.h"
+#include "../Games/DinerDash/diner_dash.c"
+#include "../Games/RNG/rng.c"
+
+void PlayGame (Queue *q){
     ArrayDin game = MakeArrayDin();
     game.Neff = 2;
     int i;
@@ -12,26 +17,26 @@ void PLAYGAME (queue *game){
     }
     // Diner Dash
     game.Elmt[1].Length = 10;
-    char GMDINERDASH[15] = "Diner Dash";
+    char GMDINERDASH[15] = "DINER DASH";
     for (i = 0; i < 10; i++)
     {
         game.Elmt[1].TabWord[i] = GMDINERDASH[i];
     }
 
-    if (!isEmpty(game)){
-        if (isWordEqual(HEAD(q), game.Elmt[0])){
+    if (!isEmptyQueue(*q)){
+        if (isWordEqual(HEAD(*q), game.Elmt[0])){
             runRNG();
         }
-        else if (isWordEqual(HEAD(q), game.Elmt[1])){
-            diner_dash();
+        else if (isWordEqual(HEAD(*q), game.Elmt[1])){
+            runDinerDash();
         }
         else {
-            printf("Skor Anda : ");
-            randomNumber();
+            printf("Skor Anda : %d\n", RandomNumber());
         }
-        dequeue(*game, *HEAD(q));
-        }
+        QueueType val;
+        dequeueQ(q, &val);
+    }
     else{
-        printf("Antrian game Anda kosong. \n");
+        printf("Antrian game Anda kosong. Silahkan tambahkan game terlebih dahulu\n");
     }
 }
