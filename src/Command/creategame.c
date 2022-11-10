@@ -10,7 +10,7 @@ void Create(ArrayDin *Game)
     printf("Masukkan nama game yang akan ditambahkan: ");
     COMMAND();
     while((cek == true) && (i < (*Game).Neff)) {
-        if (isWordEqual(currentWord,(*Game).Elmt[i])){
+        if (isWordEqual(currentWord, (*Game).Elmt[i])){
             cek = false;
         }
         i++;
@@ -22,7 +22,7 @@ void Create(ArrayDin *Game)
         InsertLast(&(*Game), currentWord);
         int n = toInt((*Game).Elmt[0]);
         n++;
-        for (i=0;i<toWord(n).Length;i++){
+        for (i=0; i < toWord(n).Length; i++){
             (*Game).Elmt[0].TabWord[i] = toWord(n).TabWord[i];
         }
         (*Game).Elmt[0].Length = toWord(n).Length;
