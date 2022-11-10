@@ -24,7 +24,7 @@ void Queue(ArrayDin *Game, ArrayDin *Q){
     COMMAND();
     int a;
     a = toInt(currentWord);
-    if ( (a>=0) && (a <= (Game->Neff)) ){
+    if ( (a>0) && (a <= (Game->Neff)) ){
         printf("Game berhasil ditambahkan ke dalam daftar antrian.\n");
         InsertLast(Q,Game->Elmt[a-1]);
     }
