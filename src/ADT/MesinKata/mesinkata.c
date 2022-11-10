@@ -151,6 +151,27 @@ void toStr(Word Kata, char *string)
 }
 /* Mengubah kata yang merupakan tipe kata menjadi string */
 
+Word toWord(int val)
+{
+    Word charInt;
+    int temp = val, len = 0;
+    while (temp > 0)
+    {
+        temp /= 10;
+        len++;
+    }
+    
+    temp = val;
+    for (int i = len - 1; i >= 0; i--)
+    {
+        charInt.TabWord[i] = (char) ((temp % 10) + '0');
+        temp /= 10;
+    }
+    charInt.Length = len;
+    return charInt;
+}
+/* Mengubah kata yang merupakan tipe kata menjadi string */
+
 int toInt (Word Kata)
 {
     int num = 0;

@@ -15,7 +15,7 @@ void DELETEGAME (ArrayDin *Game)
         printf("Game gagal dihapus \n");
     }
 
-    else if (a>5 && a<*Game.Neff-1)
+    else if (a>5 && a<(*Game).Neff-1)
     {
         i=a-1;
         DeleteAt(Game, i);

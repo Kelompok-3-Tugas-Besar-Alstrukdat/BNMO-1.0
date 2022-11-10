@@ -1,273 +1,323 @@
-#include "diner_dash.h" //ternyata rng.h ilang//copas rng.c ke sini
-#include "../../ADT/MesinKata/mesinkata.c"
-#include "../../ADT/MesinKarakter/mesinkarakter.c"
-#include "../../ADT/Array/arraydin.c"
+#include "diner_dash.h"
 
 
-int random(){
+/* *** Kreator *** */
+void CreateDinerQ(DinerQ *dq)
+{
+    CAPACITY(*dq) = DCAPACITY;
+    for (int i = 0; i < DCAPACITY; i++)
+    {
+        (*dq).buffer[i].Duration = IDX_UNDEF;
+        (*dq).buffer[i].Resistance = IDX_UNDEF;
+        (*dq).buffer[i].Price = IDX_UNDEF;
+    }
+    IDX_HEAD(*dq) = IDX_UNDEF;
+    IDX_TAIL(*dq) = IDX_UNDEF;
+}
+/* I.S. sembarang */
+/* F.S. Sebuah dq kosong terbentuk dengan kondisi sbb: */
+/* - Index head bernilai IDX_UNDEF */
+/* - Index tail bernilai IDX_UNDEF */
+/* Proses : Melakukan alokasi, membuat sebuah dq kosong */
+
+void CreateDinerArr(DinerArr *da)
+{
+    for (int i = 0; i  < DCAPACITY; i++)
+    {
+        (*da).Elmt[i] = IDX_UNDEF;
+    }
+}
+/* I.S. sembarang */
+/* F.S. Sebuah da kosong terbentuk dengan kondisi sbb: */
+/* - Elmt bernilai IDX_UNDEF */
+
+
+/* ********* Prototype ********* */
+boolean isEmpty(DinerQ dq)
+{
+    return (IDX_HEAD(dq) == IDX_UNDEF) && (IDX_TAIL(dq) == IDX_UNDEF);
+}
+/* Mengirim true jika dq kosong: lihat definisi di atas */
+boolean isFull(DinerQ dq)
+{
+    return (IDX_HEAD(dq) == 0) && (IDX_TAIL(dq) == (CAPACITY(dq) - 1));
+}
+/* Mengirim true jika tabel penampung elemen dq sudah penuh */
+/* yaitu IDX_TAIL akan selalu di belakang IDX_HEAD */
+/* IDX_HEAD selalu bernilai 0 */
+
+int length(DinerQ dq)
+{
+    return IDX_TAIL(dq) - IDX_HEAD(dq) + 1;
+}
+/* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika dq kosong */
+
+/* *** Primitif Add/Delete *** */
+void enqueue(DinerQ *dq, DinerQType val)
+{
+    if (isEmpty(*dq))
+    {
+        IDX_HEAD(*dq) = 0;
+    }
+    IDX_TAIL(*dq)++;
+    TAIL(*dq).Duration = val.Duration;
+    TAIL(*dq).Resistance = val.Resistance;
+    TAIL(*dq).Price = val.Price;
+}
+/* Proses: Menambahkan val pada dq dengan aturan FIFO */
+/* I.S. dq mungkin kosong, tabel penampung elemen dq mungkin penuh */
+/* F.S. val menjadi TAIL yang baru, IDX_TAIL bertambah satu */
+
+void dequeue(DinerQ *dq, DinerQType *val)
+{
+    (*val).Duration = HEAD(*dq).Duration;
+    (*val).Resistance = HEAD(*dq).Resistance;
+    (*val).Price = HEAD(*dq).Price;
+    if (IDX_TAIL(*dq) == IDX_HEAD(*dq))
+    {
+        IDX_HEAD(*dq) = IDX_UNDEF;
+        IDX_TAIL(*dq) = IDX_UNDEF;
+    }
+    else
+    {
+        IDX_HEAD(*dq)++;
+    }
+}
+/* Proses: Menghapus val pada dq dengan aturan FIFO */
+/* I.S. dq tidak mungkin kosong */
+/* F.S. val = nilai elemen HEAD pd I.S., semua elemen bergeser ke kiri, dan dq mungkin kosong */
+
+/* *** Display DinerQ *** */
+void displayQueue(DinerQ dq)
+{
+    for (int i = IDX_HEAD(dq); i <= IDX_TAIL(dq); i++)
+    {
+        printf("M%d\t| %d\t\t | %d\t     | %d\t\n", i, dq.buffer[i].Duration, dq.buffer[i].Resistance, dq.buffer[i].Price);
+    }
+}
+/* Proses : Menuliskan isi DinerQ dengan traversal, DinerQ ditulis di antara kurung 
+   siku; antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan 
+   karakter di depan, di tengah, atau di belakang, termasuk spasi dan enter */
+/* I.S. dq boleh kosong */
+/* F.S. Jika dq tidak kosong: [e1,e2,...,en] */
+/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
+/* Jika DinerQ kosong : menulis [] */
+
+void controlRand()
+{
     time_t t;
-    srand( (unsigned) time(&t) );
-    return( rand() % 100 ) + 1;
-}
-void create_empty(Diner *X){
-    int i = 0;
-    for (i;i<10;i++){
-        X->Elmt[i].Dur = -1;
-        X->Elmt[i].Harga = -1;
-        X->Elmt[i].Mid = -1;
-        X->Elmt[i].Tahan = -1;
-    }
-    X->Jml = 0;
+    srand(time(&t));
 }
 
-void diner_del(Diner *X, Id xid, Duration d){
-    if(X->Jml != 1){
-        int cek = 0;
-        for (int i = 0;i<(X->Jml);i++){
-            if( (X->Elmt[i].Mid == xid) && (X->Elmt[i].Dur == d) && (cek == 0)){
-                for (int j = i; j<(X->Jml) - 1;j++){
-                    X->Elmt[j].Dur = X->Elmt[j+1].Dur;
-                    X->Elmt[j].Mid = X->Elmt[j+1].Mid;
-                    X->Elmt[j].Tahan = X->Elmt[j+1].Tahan;
-                    X->Elmt[j].Harga = X->Elmt[j+1].Harga;
-                }
-                cek = -1;   
-            }
-        
+DinerQType randVal()
+{
+    DinerQType val;
+    for (int i = 0; i < 3; i++)
+    {
+        if (i == 0)
+        {
+            val.Duration = (rand() % 5) + 1;
+        }
+        else if (i == 1)
+        {
+            val.Resistance = (rand() % 5) + 1;
+        }
+        else
+        {
+            val.Price = ((rand() % 40) + 10) * 1000;
+        }
     }
-    }
-    X->Elmt[(X->Jml)-1].Dur = -1;
-    X->Elmt[(X->Jml)-1].Harga = -1;
-    X->Elmt[(X->Jml)-1].Tahan = -1;
-    X->Elmt[(X->Jml)-1].Mid = -1;
-    X->Jml -= 1;
+    return val;
 }
 
-void diner_ins(Diner *X,Diner *Y, Id xid){
-    X->Elmt[X->Jml].Dur = Y->Elmt[xid].Dur;
-    X->Elmt[X->Jml].Harga = Y->Elmt[xid].Harga;
-    X->Elmt[X->Jml].Tahan = Y->Elmt[xid].Tahan;
-    X->Elmt[X->Jml].Mid = Y->Elmt[xid].Mid;
-    X->Jml += 1;        
-}
+void main()
+{
+    printf("Selamat Datang di Diner Dash!\n");
+    int Saldo = 0;
+    DinerQ DQDash;
+    DinerArr DACook, DAServe;
+    
+    // Control random number generator
+    controlRand();
 
-
-void main(){
-
-    Diner masak, saji, daftar;
-    int saldo = 0,Count = 0, i = 0, daftarr = 3, num,awal = 0,x=0, idx = 0;
-    char cmd;
-    int antri_awal[10];
-    for (i=0;i<10;i++){
-        antri_awal[i] = -99;
+    CreateDinerQ(&DQDash);
+    for (int i = 0; i < 3; i++)
+    {
+        enqueue(&DQDash, randVal());
     }
 
-    create_empty(&masak);
-    create_empty(&saji);
-    create_empty(&daftar);
+    CreateDinerArr(&DACook);
+    CreateDinerArr(&DAServe);
+    
+    while ((length(DQDash) < 8) && (IDX_HEAD(DQDash) < 16))
+    {
+        printf("\nSALDO: %d\n", Saldo);
+        printf("\nDaftar Pesanan\n");
+        printf("Makanan | Durasi memasak | Ketahanan | Harga\n");
+        printf("--------------------------------------------\n");
+        displayQueue(DQDash);
 
-    system("cls");
-    printf("Selamat Datang di Diner Dash Dash!\n\n");
-    while ((daftarr < 7) && (Count < 15) ){ 
-        printf("Saldo: %d\n\n", saldo);
-        printf("Daftar Pesanan\n");
-        printf("Makanan\t| Durasi Memasak\t| Ketahanan\t| Harga\n");
-        printf("-----------------------------------------------------------\n");
-        //Pengisian Komponen - komponen dalam tiap masakan
-        random();
-        for (i=0;i<daftarr;i++){  
-            if (daftar.Elmt[i].Harga == -1){
-                x = rand() % 40 + 10;
-                daftar.Elmt[i].Harga = x*1000;
-                x = rand()%4 + 1;
-                daftar.Elmt[i].Dur = x;
-                x = rand() % 4 + 1;
-                daftar.Elmt[i].Tahan = x;
-                daftar.Elmt[i].Mid = i;
-                daftar.Jml += 1;
+        printf("\nDaftar Makanan yang sedang dimasak\n");
+        printf("Makanan | Sisa durasi memasak\n");
+        printf("--------------------------------\n");
+        for (int i = 0; i < DCAPACITY; i++)
+        {
+            if (DACook.Elmt[i] != IDX_UNDEF)
+            {
+                printf("M%d\t| %d\t\n", i, DACook.Elmt[i]);
             }
         }
-        //Menampilkan daftar pesanan
-        for (i=0 ;i<(daftar.Jml);i++){       
-            printf("M%d\t| %d\t\t\t| %d\t\t| %d\n", daftar.Elmt[i].Mid, daftar.Elmt[i].Dur, daftar.Elmt[i].Tahan, daftar.Elmt[i].Harga);
-        }
-        printf("\n");
-        printf("Daftar Makanan yang sedang dimasak\n"); 
-        printf("Makanan\t| Sisa durasi memasak\n");
-        printf("-------------------------------------------\n");
-        ////Menampilkan daftar masakan yang sedang dimasak
-        if (masak.Jml > 0){
-            for (i=0;i<(masak.Jml);i++){ 
-                printf("M%d\t| %d\n", masak.Elmt[i].Mid, masak.Elmt[i].Tahan);
+
+        printf("\nDaftar Makanan yang dapat disajikan\n");
+        printf("Makanan | Sisa ketahanan makanan\n");
+        printf("--------------------------------\n");
+        for (int i = 0; i < DCAPACITY; i++)
+        {
+            if (DAServe.Elmt[i] != IDX_UNDEF)
+            {
+                printf("M%d\t| %d\t\n", i, DAServe.Elmt[i]);
             }
         }
-        else{
-            printf("\t\t|\n"); 
+
+        ArrayDin command = MakeArrayDin();
+        // COOK
+        command.Elmt[0].Length = 4;
+        char CMDCOOK[10] = "COOK";
+        for (int i = 0; i < 4; i++)
+        {
+            command.Elmt[0].TabWord[i] = CMDCOOK[i];
         }
-        printf("\n");
-        printf("Daftar Makanan yang dapat disajikan\n");
-        printf("Makanan\t| Sisa ketahanan makanan\n");
-        printf("-------------------------------------------\n");
-        //Menampilkan daftar makanan yang sudah bisa di-serve
-        if (saji.Jml > 0){ 
-            for (i=0;i<(saji.Jml);i++){
-                printf("M%d\t| %d\n", saji.Elmt[i].Mid, saji.Elmt[i].Tahan);
-            }      
+        // SERVE
+        command.Elmt[1].Length = 5;
+        char CMDSERVE[10] = "SERVE";
+        for (int i = 0; i < 5; i++)
+        {
+            command.Elmt[1].TabWord[i] = CMDSERVE[i];
         }
-        else{
-            printf("\t\t|\n");
+        // SKIP
+        command.Elmt[2].Length = 4;
+        char CMDSKIP[10] = "SKIP";
+        for (int i = 0; i < 4; i++)
+        {
+            command.Elmt[2].TabWord[i] = CMDSKIP[i];
         }
-        
-        //Memasukkan Command
-        printf("MASUKKAN COMMAND: ");
+
+        Word Input;
+        int N;
+        printf("\nMASUKKAN COMMAND: ");
         COMMAND();
-        //Command COOK
-        Word cmd;
-        Word angka;
-        
-
-        i = 0;
-        if (currentWord.Length == 4){
-            for(i=0;i<4;i++){
-            cmd.TabWord[i] = currentWord.TabWord[i];
-            }
-            cmd.Length = 4;
-        }
-        else{
-            
-            while(currentWord.TabWord[i] != ' '){
-                cmd.TabWord[i] = currentWord.TabWord[i];
+        system("cls");
+        if (currentWord.Length > 4)
+        {
+            int i = 0;
+            while ((currentWord.TabWord[i] != ' ') && (i < currentWord.Length))
+            {
+                Input.TabWord[i] = currentWord.TabWord[i];
                 i++;
             }
+            Input.Length = i;
 
-            cmd.Length = i;
             i++;
-            int num;
-            if (currentWord.TabWord[i] != 'M'){
-                printf("ID makanan salah!\n");
-            }
-            else{
-                idx = 0;
+            if (currentWord.TabWord[i] == 'M')
+            {
                 i++;
-                while(i<currentWord.Length){
-                    angka.TabWord[idx] = currentWord.TabWord[i];
-                    i++;
-                    idx++;
+                Word TN;
+                for (int j = i; j < currentWord.Length; j++)
+                {
+                    TN.TabWord[j-i] = currentWord.TabWord[j];
                 }
-                angka.Length = idx;
-                num = toInt(angka);
+                TN.Length = currentWord.Length - i;
+                N = toInt(TN);
             }
+            
         }
-        char cmdc[5] = "COOK";
-        char cmds[6] = "SERVE";
-        char cmdsk[5] = "SKIP";
-
-        ArrayDin cmd_c = MakeArrayDin();
-        cmd_c.Neff = 3;
-        for(i = 0; i<4; i++){
-            cmd_c.Elmt[0].TabWord[i] = cmdc[i];
-        }
-        cmd_c.Elmt[0].Length = i;
-        for(i = 0; i<5; i++){
-            cmd_c.Elmt[1].TabWord[i] = cmds[i];
-        }
-        cmd_c.Elmt[1].Length = i;
-        for(i = 0; i<4; i++){
-            cmd_c.Elmt[2].TabWord[i] = cmdsk[i];
-        }
-        cmd_c.Elmt[2].Length = i;
-
-        if ( isWordEqual(cmd,cmd_c.Elmt[0])){
-            if(((num>=0) && (num<=6)) && ((masak.Jml) <= 5) && (num < (daftar.Jml))){ 
-                printf("Berhasil memasak M%d\n",num);
-                antri_awal[awal] = num;
-                awal += 1;
-                printf("=============================\n");
-                    //ini kayak insert lah pokoknya, insert dari Q daftar ke Q masak.
-                masak.Elmt[masak.Jml].Mid = daftar.Elmt[num].Mid;
-                masak.Elmt[masak.Jml].Dur = daftar.Elmt[num].Dur;
-                masak.Elmt[masak.Jml].Harga = daftar.Elmt[num].Harga;
-                masak.Elmt[masak.Jml].Tahan = daftar.Elmt[num].Tahan;
-                masak.Jml += 1;
-                daftarr += 1; //daftar pesanan nanti bakal nambah 1
-
-                    //Mengurangi semua durasi dan ketahanan makanan di daftar serve dan masak
-                for (i = 0;i<(masak.Jml);i++){
-                    masak.Elmt[i].Dur -= 1;
-                }
-                for (i = 0;i<(saji.Jml);i++){
-                    saji.Elmt[i].Tahan -= 1;
-                }
-                printf("Berhasil memasak M%d.\n",num);
+        else
+        {
+            for (int i = 0; i < currentWord.Length; i++)
+            {
+                Input.TabWord[i] = currentWord.TabWord[i];
             }
-            else{
-                printf("Masakan belum masuk pesanan atau kompor sedang penuh, ulangi lagi!\n");
-            }
-                
-        }
-            //Command SERVE
-        else if(isWordEqual(cmd,cmd_c.Elmt[1])){
-                
-            if((num>=0) && (num<=6)) {
-                if((antri_awal[idx] == num) && (saji.Elmt[0].Mid == num))  {
-                    saldo += saji.Elmt[0].Harga;
-                    diner_del (&saji, num, saji.Elmt[num].Dur);
-                    Count += 1;
-                    daftarr+= 1;
-                    idx += 1;
-                        //Mengurangi semua durasi dan ketahanan makanan di daftar serve dan masak
-                    for (i = 0;i<(masak.Jml);i++){
-                        masak.Elmt[i].Dur -= 1;
-                    }
-                    for (i = 0;i<(saji.Jml);i++){
-                        saji.Elmt[i].Tahan -= 1;
-                    }
-                    printf("Berhasil mengantar M%d.\n",num);
-                }
-                else{
-                    printf("M%d belum dapat disajikan karena M%d belum selesai\n",num,antri_awal[0]);
-                }
-            }
-            else{
-                printf("Masakan M%d tidak ada di menu!\n",num);
-            }
-        }
-            // Command SKIP
-        else if (isWordEqual(cmd,cmd_c.Elmt[2])){
-                //Mengurangi semua durasi dan ketahanan makanan di daftar serve dan masak
-            for (i = 0;i<(masak.Jml);i++){
-                masak.Elmt[i].Dur -= 1;
-            }
-            for (i = 0;i<(saji.Jml);i++){
-                saji.Elmt[i].Tahan -= 1;
-            }
-            daftarr+= 1;
-            printf("Berhasil SKIP!\n");
-        }
-        else{
-            printf("Command tidak dikenali, input salah!\n");
+            Input.Length = currentWord.Length;
         }
 
-            //Cek apakah ada masakan yang sudah bisa pindah ke Serve dan apakah ada makanan di Serve yang sudah tidak layak
-        for(i=0;i<(masak.Jml);i++){
-            if (masak.Elmt[i].Dur == 0){
-                printf("Berhasil memasak M%d.\n",masak.Elmt[i].Mid);
-                masak.Elmt[i].Dur == daftar.Elmt[masak.Elmt[i].Mid].Dur;
-                diner_ins (&saji,&masak,i);
-                diner_del (&masak,i,masak.Elmt[i].Dur);
+        // Data Ketahanan Makanan yang Telah Siap Disajikan
+        for (int i = 0; i < DCAPACITY; i++)
+        {
+            if (DAServe.Elmt[i] > 0)
+            {
+                DAServe.Elmt[i]--;
+            }
+            if (DAServe.Elmt[i] == 0)
+            {
+                DAServe.Elmt[i] = IDX_UNDEF;
+                printf("Makanan M%d telah basi dan harus dimasak kembali\n", i);
             }
         }
 
-        for(i=0;i<(saji.Jml);i++){
-            if (saji.Elmt[i].Dur == 0){
-                printf("Makanan M%d sudah busuk, harus dibuang.\n",saji.Elmt[i].Mid);
-                diner_del(&saji,saji.Elmt[i].Mid,saji.Elmt[i].Dur);
-                    
-
+        // Proses Memasak Makanan
+        for (int i = 0; i < DCAPACITY; i++)
+        {
+            if (DACook.Elmt[i] > 0)
+            {
+                DACook.Elmt[i]--;
+            }
+            if (DACook.Elmt[i] == 0)
+            {
+                DACook.Elmt[i] = IDX_UNDEF;
+                DAServe.Elmt[i] = DQDash.buffer[i].Resistance;
+                printf("Makanan M%d telah selesai dimasak\n", i);
             }
         }
-        printf("=======================================\n");
+
+        // Input == COOK
+        if (isWordEqual(Input, command.Elmt[0]) && (N >= IDX_HEAD(DQDash) && N <= IDX_TAIL(DQDash)))
+        {
+            if (DACook.Elmt[N] != IDX_UNDEF)
+            {
+                printf("Makanan M%d sudah dimasak\n", N);
+            }
+            else
+            {
+                DACook.Elmt[N] = DQDash.buffer[N].Duration;
+                printf("Berhasil memasak M%d\n", N);
+            }
+        }
+        // Input == SERVE
+        else if (isWordEqual(Input, command.Elmt[1]) && (N >= IDX_HEAD(DQDash) && N <= IDX_TAIL(DQDash)))
+        {
+            if (IDX_HEAD(DQDash) == N)
+            {
+                DinerQType val;
+                dequeue(&DQDash, &val);
+                Saldo += val.Price;
+                DAServe.Elmt[N] = IDX_UNDEF;
+                printf("Berhasil mengantar M%d\n", N);
+            }
+            else
+            {
+                printf("M%d belum dapat disajikan karena M%d belum selesai\n", N, IDX_HEAD(DQDash));
+            }
+        }
+        // Input == SKIP
+        else if (isWordEqual(Input, command.Elmt[2]))
+        {
+            
+        }
+        // Input tidak valid
+        else
+        {
+            printf("Command yang Anda masukkan tidak valid\n");
+        }
+        // Pelanggan bertambah
+        enqueue(&DQDash, randVal());
+        printf("=======================================================\n");
     }
-      
+    if (length(DQDash) > 7)
+    {
+        printf("Permainan telah selesai karena antrian Anda telah melebihi 7 pelanggan\n");
+    }
+    else
+    {
+        printf("Permainan telah selesai karena Anda telah melayani 15 pelanggan\n");
+    }
 }
-
