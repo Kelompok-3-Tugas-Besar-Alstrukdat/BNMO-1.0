@@ -30,41 +30,41 @@ ArrayDin validCOMMAND()
         command.Elmt[2].TabWord[i] = CMDSAVE[i];
     }
     // CREATE GAME
-    command.Elmt[3].Length = 10;
-    char CMDCG[15] = "CREATEGAME";
-    for (i = 0; i < 10; i++)
+    command.Elmt[3].Length = 11;
+    char CMDCG[15] = "CREATE GAME";
+    for (i = 0; i < 11; i++)
     {
         command.Elmt[3].TabWord[i] = CMDCG[i];
     }
     // LIST GAME
-    command.Elmt[4].Length = 8;
-    char CMDLG[15] = "LISTGAME";
-    for (i = 0; i < 8; i++)
+    command.Elmt[4].Length = 9;
+    char CMDLG[15] = "LIST GAME";
+    for (i = 0; i < 9; i++)
     {
         command.Elmt[4].TabWord[i] = CMDLG[i];
     }
     // DELETE GAME
-    command.Elmt[5].Length = 10;
-    char CMDDG[15] = "DELETEGAME";
-    for (i = 0; i < 10; i++)
+    command.Elmt[5].Length = 11;
+    char CMDDG[15] = "DELETE GAME";
+    for (i = 0; i < 11; i++)
     {
         command.Elmt[5].TabWord[i] = CMDDG[i];
     }
     // QUEUE GAME
-    command.Elmt[6].Length = 9;
-    char CMDQG[15] = "QUEUEGAME";
-    for (i = 0; i < 9; i++)
+    command.Elmt[6].Length = 10;
+    char CMDQG[15] = "QUEUE GAME";
+    for (i = 0; i < 10; i++)
     {
         command.Elmt[6].TabWord[i] = CMDQG[i];
     }
     // PLAY GAME
-    command.Elmt[7].Length = 8;
-    char CMDPG[15] = "PLAYGAME";
-    for (i = 0; i < 8; i++)
+    command.Elmt[7].Length = 9;
+    char CMDPG[15] = "PLAY GAME";
+    for (i = 0; i < 9; i++)
     {
         command.Elmt[7].TabWord[i] = CMDPG[i];
     }
-    // SKIP GAME
+    // SKIPGAME
     command.Elmt[8].Length = 8;
     char CMDSG[15] = "SKIPGAME";
     for (i = 0; i < 8; i++)
@@ -118,41 +118,41 @@ boolean isCOMMAND(Word Kata)
         command.Elmt[2].TabWord[i] = CMDSAVE[i];
     }
     // CREATE GAME
-    command.Elmt[3].Length = 10;
-    char CMDCG[15] = "CREATEGAME";
-    for (i = 0; i < 10; i++)
+    command.Elmt[3].Length = 11;
+    char CMDCG[15] = "CREATE GAME";
+    for (i = 0; i < 11; i++)
     {
         command.Elmt[3].TabWord[i] = CMDCG[i];
     }
     // LIST GAME
-    command.Elmt[4].Length = 8;
-    char CMDLG[15] = "LISTGAME";
-    for (i = 0; i < 8; i++)
+    command.Elmt[4].Length = 9;
+    char CMDLG[15] = "LIST GAME";
+    for (i = 0; i < 9; i++)
     {
         command.Elmt[4].TabWord[i] = CMDLG[i];
     }
     // DELETE GAME
-    command.Elmt[5].Length = 10;
-    char CMDDG[15] = "DELETEGAME";
-    for (i = 0; i < 10; i++)
+    command.Elmt[5].Length = 11;
+    char CMDDG[15] = "DELETE GAME";
+    for (i = 0; i < 11; i++)
     {
         command.Elmt[5].TabWord[i] = CMDDG[i];
     }
     // QUEUE GAME
-    command.Elmt[6].Length = 9;
-    char CMDQG[15] = "QUEUEGAME";
-    for (i = 0; i < 9; i++)
+    command.Elmt[6].Length = 10;
+    char CMDQG[15] = "QUEUE GAME";
+    for (i = 0; i < 10; i++)
     {
         command.Elmt[6].TabWord[i] = CMDQG[i];
     }
     // PLAY GAME
-    command.Elmt[7].Length = 8;
-    char CMDPG[15] = "PLAYGAME";
-    for (i = 0; i < 8; i++)
+    command.Elmt[7].Length = 9;
+    char CMDPG[15] = "PLAY GAME";
+    for (i = 0; i < 9; i++)
     {
         command.Elmt[7].TabWord[i] = CMDPG[i];
     }
-    // SKIP GAME
+    // SKIPGAME
     command.Elmt[8].Length = 8;
     char CMDSG[15] = "SKIPGAME";
     for (i = 0; i < 8; i++)
