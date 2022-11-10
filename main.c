@@ -68,9 +68,11 @@ void main()
 {
     Word INPUT;
     ArrayDin Game = MakeArrayDin();
+    Queue GameQ;
+    CreateQueue(&GameQ);
     char filename[50] = "docs/";
 
-    printf("Masukkan command START atau LOAD <namafile>.txt untuk menjalan BNMO.\n");
+    printf("\nMasukkan command START atau LOAD <namafile>.txt untuk menjalan BNMO.\n");
     fetchBNMO(&INPUT);
     if (isWordEqual(INPUT,validCOMMAND().Elmt[0]))
     {
@@ -156,7 +158,7 @@ void main()
         if (!isCOMMAND(INPUT))
         {
             int i = 0;
-            while (currentWord.TabWord[i] != ' ')
+            while ((currentWord.TabWord[i] != ' ') && (i < currentWord.Length))
             {
                 INPUT.TabWord[i] = currentWord.TabWord[i];
                 i++;
@@ -173,6 +175,11 @@ void main()
                 }
             }
             filename[j] = '\0';
+
+            if (!isWordEqual(INPUT, validCOMMAND().Elmt[2]))
+            {
+                INPUT.Length = 0;
+            }
         }
 
         if (isCOMMAND(INPUT))
@@ -199,7 +206,7 @@ void main()
             // INPUT == CREATEGAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[3])))
             {
-
+                Create(&Game);
             }
             // INPUT == LISTGAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[4])))
@@ -214,17 +221,17 @@ void main()
             // INPUT == DELETEGAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[5])))
             {
-
+                DeleteGame(&Game);
             }
             // INPUT == QUEUEGAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[6])))
             {
-
+                QueueGame(&Game, &GameQ);
             }
             // INPUT == PLAYGAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[7])))
             {
-
+                PlayGame(&GameQ);
             }
             // INPUT == SKIP GAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[8])))
