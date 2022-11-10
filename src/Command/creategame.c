@@ -4,7 +4,8 @@
 #include "../ADT/Array/arraydin.h"
 
 
-void Create(ArrayDin *Game){
+void Create(ArrayDin *Game)
+{
     int i = 1;
     boolean cek = true;
     printf("Masukkan nama game yang akan ditambahkan: ");
@@ -36,6 +37,4 @@ void Create(ArrayDin *Game){
         }
         
     }
-
-
 }
