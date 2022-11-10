@@ -311,10 +311,15 @@ void runDinerDash()
         // Pelanggan bertambah
         enqueueDQ(&DQDash, randVal());
         printf("=======================================================\n");
+        printf("Kembali ke menu ");
+        countdown();
+        system("cls");
+        
     }
     if (lengthDQ(DQDash) > 7)
     {
         printf("Permainan telah selesai karena antrian Anda telah melebihi 7 pelanggan\n");
+
     }
     else
     {
