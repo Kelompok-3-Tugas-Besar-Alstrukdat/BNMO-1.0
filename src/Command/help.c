@@ -7,7 +7,7 @@ void Help(){
     printf("2. LOAD\n");
     printf("   Enter command LOAD <filename>, dibaca save file <filename> berisi list game yang dapat dimainkan, history dan scoreboard game\n");
     printf("2. SAVE\n");
-    printf("   Enter command SAVE <filename>, dibaca save file <filename> berisi list game yang dapat dimainkan, history dan scoreboard game\n");
+    printf("   Enter command SAVE <filename>, menyimpan state game pemain saat ini ke suatu file");
     printf("4. CREATE GAME\n");
     printf("   Enter command CREATE GAME, menambahkan game baru pada daftar game\n");
     printf("5. LIST GAME\n");
