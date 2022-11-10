@@ -3,25 +3,22 @@
 #include "../ADT/MesinKata/mesinkata.h"
 #include "../ADT/Array/arraydin.h"
 
-void DELETEGAME (ArrayDin *Game)
+void DeleteGame(ArrayDin *Game)
 {
-    int a, i;
-
     printf("Masukkan nomor game yang akan dihapus: ");
-    scanf("%d", &a);
+    COMMAND();
+    int num = toInt(currentWord);
 
-    if((a>=1) && (a<=5))
+    if((num >= 1) && (num <= 5))
     {
         printf("Game gagal dihapus \n");
     }
 
-    else if (a>5 && a<(*Game).Neff-1)
+    else if ((num > 5) && (num < (*Game).Neff))
     {
-        i=a-1;
-        DeleteAt(Game, i);
+        DeleteAt(Game, num);
         printf("Game berhasil dihapus \n");
     }
-
     else
     {
         printf("Game tidak ditemukan \n");
