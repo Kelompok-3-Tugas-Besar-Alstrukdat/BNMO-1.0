@@ -250,7 +250,8 @@ void runDinerDash()
 
         // Control status masukan command
         valid = true;
-        
+
+        printf("================================================================================\n");        
         if (currentWord.Length > 4)
         {
             int i = 0;
@@ -336,7 +337,7 @@ void runDinerDash()
                 printf("Command yang Anda masukkan tidak valid\n");
             }
         }
-        printf("=======================================================\n");
+        printf("================================================================================\n");
     }
     if (lengthDQ(DQDash) > 7)
     {
@@ -348,6 +349,4 @@ void runDinerDash()
         printf("CONGRATULATION\n");
         printf("$$$ You earned Rp%d,- $$$", Saldo);
     }
-    printf("Back to main page ");
-    countdown();
 }
