@@ -251,7 +251,7 @@ void runDinerDash()
             {
                 DAServe.Elmt[i]--;
             }
-            if (DAServe.Elmt[i] < 0)
+            if ((DAServe.Elmt[i] < 0) && (DACook.Elmt[i] != Idx_Undef))
             {
                 DAServe.Elmt[i] = Idx_Undef;
                 printf("Makanan M%d telah basi dan harus dimasak kembali\n", i);
@@ -265,7 +265,7 @@ void runDinerDash()
             {
                 DACook.Elmt[i]--;
             }
-            if (DACook.Elmt[i] < 0)
+            if ((DACook.Elmt[i] < 0) && (DACook.Elmt[i] != Idx_Undef))
             {
                 DACook.Elmt[i] = Idx_Undef;
                 DAServe.Elmt[i] = DQDash.buffer[i].Resistance;
@@ -276,7 +276,7 @@ void runDinerDash()
         // Input == COOK
         if (isWordEqual(Input, command.Elmt[0]) && (N >= Idx_Head(DQDash) && N <= Idx_Tail(DQDash)))
         {
-            if (DACook.Elmt[N] != Idx_Undef)
+            if (DACook.Elmt[N] > 0)
             {
                 printf("Makanan M%d sudah dimasak\n", N);
             }
@@ -290,7 +290,7 @@ void runDinerDash()
         // Input == SERVE
         else if (isWordEqual(Input, command.Elmt[1]) && (N >= Idx_Head(DQDash) && N <= Idx_Tail(DQDash)))
         {
-            if ((Idx_Head(DQDash) == N) && (DAServe.Elmt[N] != Idx_Undef))
+            if ((Idx_Head(DQDash) == N) && (DAServe.Elmt[N] > 0))
             {
                 DinerQType val;
                 dequeueDQ(&DQDash, &val);
