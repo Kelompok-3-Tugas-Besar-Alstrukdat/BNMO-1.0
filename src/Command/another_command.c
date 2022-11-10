@@ -8,6 +8,7 @@ ArrayDin validCOMMAND()
     command.Neff = 11;
     int i;
 
+
     // START
     command.Elmt[0].Length = 5;
     char CMDSTART[15] = "START";
