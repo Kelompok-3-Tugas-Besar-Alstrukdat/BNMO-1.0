@@ -285,7 +285,7 @@ void runDinerDash()
         // Input == SERVE
         else if (isWordEqual(Input, command.Elmt[1]) && (N >= Idx_Head(DQDash) && N <= Idx_Tail(DQDash)))
         {
-            if (Idx_Head(DQDash) == N)
+            if ((Idx_Head(DQDash) == N) && (DAServe.Elmt[N] != IDX_UNDEF))
             {
                 DinerQType val;
                 dequeueDQ(&DQDash, &val);
