@@ -9,3 +9,17 @@ BNMO diprogram menggunakan Bahasa C dan merupakan permainan yang berbasis CLI (C
 - Nabilah Amanda Putri (18221021)
 - Wildhan Hidayatullah (18221024)
 - Vasya Izza Parsa (18221030)
+## How to Play?
+
+## Available Commands
+- START
+- LOAD
+- SAVE
+- CREATEGAME
+- LISTGAME
+- DELETEGAME
+- QUEUEGAME
+- PLAYGAME
+- SKIPGAME
+- QUIT
+- HELP
