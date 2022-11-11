@@ -5,21 +5,21 @@
 #include <time.h>
 
 //------------------------------------------------------------ FILE HEADER ADT ------------------------------------------------------------//
-#include "src/ADT/Array/arraydin.c"
-#include "src/ADT/MesinKarakter/mesinkarakter.c"
-#include "src/ADT/MesinKata/mesinkata.c"
-#include "src/ADT/Queue/queue.c"
+#include "src/ADT/Array/arraydin.h"
+#include "src/ADT/MesinKarakter/mesinkarakter.h"
+#include "src/ADT/MesinKata/mesinkata.h"
+#include "src/ADT/Queue/queue.h"
 
 //--------------------------------------------------- FILE HEADER FUNCTION FOR COMMAND ----------------------------------------------------//
-#include "src/Command/save.c"
-#include "src/Command/creategame.c"
-#include "src/Command/deletegame.c"
-#include "src/Command/queuegame.c"
-#include "src/Command/playgame.c"
-#include "src/Command/skipgame.c"
-#include "src/Command/help.c"
-#include "src/Command/another_command.c"
-#include "BNMO_display.c"
+#include "src/Command/save.h"
+#include "src/Command/creategame.h"
+#include "src/Command/deletegame.h"
+#include "src/Command/queuegame.h"
+#include "src/Command/playgame.h"
+#include "src/Command/skipgame.h"
+#include "src/Command/help.h"
+#include "src/Command/another_command.h"
+#include "BNMO_display.h"
 
 void fetchBNMO(Word *INPUT)
 {
