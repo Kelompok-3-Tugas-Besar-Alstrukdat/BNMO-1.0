@@ -4,7 +4,7 @@
 
 void QueueGame(ArrayDin *Game, Queue *Q){
     int i = 0;
-    printf("Berikut adalah daftar antrian permainanmu\n");
+    printf("Berikut adalah daftar antrian permainanmu: \n");
     if (lengthQueue(*Q) == 0){
         printf("\n-- Permainan Tidak Ada --\n");
         printf("\nDaftar antrian permainanmu masih kosong, silakan tambahkan permainan terlebih dahulu!\n");
