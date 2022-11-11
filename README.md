@@ -23,3 +23,9 @@ BNMO diprogram menggunakan Bahasa C dan merupakan permainan yang berbasis CLI (C
 - SKIPGAME
 - QUIT
 - HELP
+
+## Available Games
+- RNG
+- Diner Dash
+- Magic Shell
+- Hide in Cartesian
