@@ -75,6 +75,8 @@ int main()
     dequeueQ(&P, &val1);
     dequeueQ(&P, &val2);
     dequeueQ(&Q, &val4);
+    printf("Mau dequeue nih.\n");
+    countdown();
     printf("%d, ini panjang dari Queue P sekarang. %d, ini panjang dari Queue Q sekarang.\n", lengthQueue(P), lengthQueue(Q));
     countdown();
 
