@@ -1,9 +1,9 @@
 void SKIPGAME (queue *game, int n){
     int i;
     scanf("%d", &n);
-    if (n <= length(q)){
+    if (n <= length(game)){
         while (i <= n){
-            dequeue(*game, *HEAD(q));
+            dequeue(*game, *HEAD(game));
         }
     }
     else {
