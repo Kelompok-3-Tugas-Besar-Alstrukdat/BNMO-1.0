@@ -86,7 +86,7 @@ void enqueueQ(Queue *q, QueueType val)
 void dequeueQ(Queue *q, QueueType *val)
 {
     (*val).Length = HEAD(*q).Length;
-    for (int i = 0; i < IDX_TAIL(*q); i++)
+    for (int i = 0; i < HEAD(*q).Length; i++)
     {
         (*val).TabWord[i] = HEAD(*q).TabWord[i + 1];
     }
@@ -101,7 +101,7 @@ void dequeueQ(Queue *q, QueueType *val)
             (*q).buffer[i].Length = (*q).buffer[i + 1].Length;
             for (int j = 0; j < (*q).buffer[i].Length; j++)
             {
-                (*q).buffer[i].TabWord[j] = (*q).buffer[i].TabWord[j + 1];
+                (*q).buffer[i].TabWord[j] = (*q).buffer[i+1].TabWord[j];
             }
         }
     }
