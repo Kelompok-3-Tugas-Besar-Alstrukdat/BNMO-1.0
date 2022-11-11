@@ -5,22 +5,22 @@
 
 void DeleteGame(ArrayDin *Game)
 {
-    printf("Masukkan nomor game yang akan dihapus: ");
+    printf("Masukkan nomor permainan yang akan dihapus: ");
     COMMAND();
     int num = toInt(currentWord);
 
-    if((num >= 1) && (num <= 5))
+    if((num > 0) && (num < 8))
     {
-        printf("Game gagal dihapus \n");
+        printf("Permainan sistem tidak dapat dihapus.\n");
     }
 
-    else if ((num > 5) && (num < (*Game).Neff))
+    else if ((num > 7) && (num < (*Game).Neff))
     {
         DeleteAt(Game, num);
-        printf("Game berhasil dihapus \n");
+        printf("Prmainan berhasil dihapus.\n");
     }
     else
     {
-        printf("Game tidak ditemukan \n");
+        printf("Permainan tidak ditemukan.\n");
     }
 }
