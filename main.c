@@ -268,7 +268,7 @@ void main()
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[5])))
             {
                 changePage();
-                DeleteGame(&Game);
+                DeleteGame(&Game, &GameQ);
                 backToMainPage();
             }
             // INPUT == QUEUEGAME
