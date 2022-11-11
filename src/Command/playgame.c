@@ -2,11 +2,12 @@
 #include "../boolean.h"
 #include "../Games/DinerDash/diner_dash.c"
 #include "../Games/RNG/rng.c"
-#include "../Games/MagicShell/MagicShell.c"
+#include "../Games/MagicShell/magic_shell.c"
+#include "../Games/HideInCartesian/hide_in_cartesian.c"
 
 void PlayGame (Queue *q){
     ArrayDin game = MakeArrayDin();
-    game.Neff = 8;
+    game.Neff = 7;
     int i;
 
     // RNG
@@ -51,19 +52,12 @@ void PlayGame (Queue *q){
     {
         game.Elmt[5].TabWord[i] = GMHIC[i];
     }
-    // NUZZLE
-    game.Elmt[6].Length = 6;
-    char GMNZ[20] = "NUZZLE";
-    for (i = 0; i < 6; i++)
-    {
-        game.Elmt[6].TabWord[i] = GMNZ[i];
-    }
     // MAGIC SHELL
-    game.Elmt[7].Length = 11;
+    game.Elmt[6].Length = 11;
     char GMMS[20] = "MAGIC SHELL";
     for (i = 0; i < 11; i++)
     {
-        game.Elmt[7].TabWord[i] = GMMS[i];
+        game.Elmt[6].TabWord[i] = GMMS[i];
     }
 
     if (!isEmptyQueue(*q)){
@@ -83,12 +77,9 @@ void PlayGame (Queue *q){
             printf("Permainan sedang dalam perbaikan.\n");
         }
         else if (isWordEqual(HEAD(*q), game.Elmt[5])){
-            runDinerDash();
+            runHideInCartesian();
         }
         else if (isWordEqual(HEAD(*q), game.Elmt[6])){
-            runDinerDash();
-        }
-        else if (isWordEqual(HEAD(*q), game.Elmt[7])){
             magic_shell();
         }
         else {
