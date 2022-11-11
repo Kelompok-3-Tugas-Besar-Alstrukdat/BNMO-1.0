@@ -173,7 +173,7 @@ void main()
             else
             {
                 fclose(test);
-                printf("Nama file yang Anda masukkan salah. Periksa kembali dan pastikan nama file benar.\n");
+                printf("Nama file yang Kamu masukkan salah. Periksa kembali dan pastikan nama file benar.\n");
                 fetchBNMO(&INPUT);
             }
         }
@@ -242,7 +242,7 @@ void main()
                 }
                 else
                 {
-                    printf("Harap periksa kembali extension file Anda.\nFormat save: SAVE <namafile>.txt\n");
+                    printf("Harap periksa kembali extension file Kamu.\nFormat save: SAVE <namafile>.txt\n");
                 }
                 backToMainPage();
             }
@@ -284,7 +284,7 @@ void main()
                 if (isEmptyQueue(GameQ))
                 {
                     changePage();
-                    printf("Daftar antrian Anda kosong. Silahkan tambahkan permainan terlebih dahulu.\n");
+                    printf("Daftar antrian Kamu kosong. Silahkan tambahkan permainan terlebih dahulu.\n");
                 }
                 else
                 {
@@ -302,9 +302,11 @@ void main()
                 {
                     idx++;
                 }
-                for (int tidx = (idx - 6); tidx >= 0; tidx--)
+                int digit = 0;
+                for (int tidx = (idx - 1); tidx >= 5; tidx--)
                 {
-                    n += ((filename[tidx] - '0') * pow(10, tidx));
+                    n += ((filename[tidx] - '0') * pow(10, digit));
+                    digit++;
                 }
                 if (n > 0)
                 {
@@ -323,12 +325,29 @@ void main()
             // INPUT == QUIT
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[9])))
             {
-                system("cls");
-                printf("==================================| B N M O |==================================\n");
-                printf("           ^_^ T E R I M A  K A S I H  T E L A H  B E R M A I N ^_^\n");
-                printf("                              B Y E  B Y E ");
-                countdown();
-                system("cls");
+                printf("Apakah Kamu ingin menyimpan data permainanmu? (y/n)\t");
+                COMMAND();
+                if (currentWord.TabWord[0] == 'y')
+                {
+                    INPUT.Length = 0;
+                    backToMainPage();
+                }
+                else if (currentWord.TabWord[0] == 'n')
+                {
+                    system("cls");
+                    printf("==================================| B N M O |==================================\n");
+                    printf("           ^_^ T E R I M A  K A S I H  T E L A H  B E R M A I N ^_^\n");
+                    printf("                              B Y E  B Y E ");
+                    countdown();
+                    system("cls");
+                }
+                else
+                {
+                    INPUT.Length = 0;
+                    changePage();
+                    printf("Command tidak dikenali, silahkan masukkan command yang valid.\n");
+                    backToMainPage();
+                }
             }
             // INPUT == HELP
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[10])))
