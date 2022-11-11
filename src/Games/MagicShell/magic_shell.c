@@ -5,7 +5,8 @@
 #include "../../ADT/MesinKata/mesinkata.h"
 
 void magic_shell() {
-    printf("Kerang Ajaib telah dimulai. Ulululululululu!!!\n");
+    printf("============================| M A G I C  S H E L L |=============================\n");
+    printf("Puja kerang ajaib!!! Ulululululululu!!!\n");
     ArrayDin magshell = MakeArrayDin();
     magshell.Neff = 2;
     // Ya
@@ -16,7 +17,15 @@ void magic_shell() {
     time_t t;
     srand(time(&t));
     
-    while (isWordEqual(currentWord, magshell.Elmt[0])) {
+    Word Input;
+    Input.Length = 2;
+    Input.TabWord[0] = 'Y';
+    Input.TabWord[1] = 'a';
+
+    while (isWordEqual(Input, magshell.Elmt[0])) {
+        system("cls");
+        printf("============================| M A G I C  S H E L L |=============================\n");
+        printf("Silahkan tanyakan apa saja!\n");
         COMMAND();
         int num = (rand() % 9) + 1;
 
@@ -39,7 +48,7 @@ void magic_shell() {
             printf("Bisa jadi\n");
         }
         else if (num == 7) {
-            "Mungkin\n";
+            printf("Mungkin\n");
         }
         else if (num == 8) {
             printf("Mungkin nanti\n");
@@ -51,6 +60,13 @@ void magic_shell() {
             printf("Coba tanya lagi\n");
         }
 
+        printf("\nMasih mau nanyeaaa? (Ya/Tidak)\n");
         COMMAND();
+        Input.Length = currentWord.Length;
+        for (int i = 0; i < currentWord.Length; i++)
+        {
+            Input.TabWord[i] = currentWord.TabWord[i];
+        }
     }
+    printf("Puja kerang ajaib!!! Ulululululululu!!!\n");
 }
