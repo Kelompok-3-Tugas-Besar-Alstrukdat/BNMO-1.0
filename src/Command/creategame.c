@@ -3,14 +3,17 @@
 #include "../ADT/MesinKata/mesinkata.h"
 #include "../ADT/Array/arraydin.h"
 
+//Menambahkan permainan ke dalam daftar permainan
 void Create(ArrayDin *Game)
 {
     int i = 1;
     boolean cek = true;
     printf("Masukkan nama game yang akan ditambahkan: ");
     COMMAND();
+
+    //Syarat menambahkan game adalah nama permainan yang ingin ditambahkan belum ada di daftar permainan
     while((cek == true) && (i < (*Game).Neff)) {
-        if (isWordEqual(currentWord,(*Game).Elmt[i])){
+        if (isWordEqual(currentWord, (*Game).Elmt[i])){
             cek = false;
         }
         i++;
@@ -22,7 +25,7 @@ void Create(ArrayDin *Game)
         InsertLast(&(*Game), currentWord);
         int n = toInt((*Game).Elmt[0]);
         n++;
-        for (i=0;i<toWord(n).Length;i++){
+        for (i=0; i < toWord(n).Length; i++){
             (*Game).Elmt[0].TabWord[i] = toWord(n).TabWord[i];
         }
         (*Game).Elmt[0].Length = toWord(n).Length;

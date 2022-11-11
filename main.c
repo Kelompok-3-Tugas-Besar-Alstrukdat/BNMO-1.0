@@ -2,28 +2,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 
 //------------------------------------------------------------ FILE HEADER ADT ------------------------------------------------------------//
-#include "src/ADT/Array/arraydin.c"
-#include "src/ADT/MesinKarakter/mesinkarakter.c"
-#include "src/ADT/MesinKata/mesinkata.c"
-#include "src/ADT/Queue/queue.c"
+#include "src/ADT/Array/arraydin.h"
+#include "src/ADT/MesinKarakter/mesinkarakter.h"
+#include "src/ADT/MesinKata/mesinkata.h"
+#include "src/ADT/Queue/queue.h"
 
 //--------------------------------------------------- FILE HEADER FUNCTION FOR COMMAND ----------------------------------------------------//
-#include "src/Command/save.c"
-#include "src/Command/creategame.c"
-#include "src/Command/deletegame.c"
-#include "src/Command/queuegame.c"
-#include "src/Command/playgame.c"
-#include "src/Command/skipgame.c"
-#include "src/Command/help.c"
-#include "src/Command/another_command.c"
+#include "src/Command/save.h"
+#include "src/Command/creategame.h"
+#include "src/Command/deletegame.h"
+#include "src/Command/queuegame.h"
+#include "src/Command/playgame.h"
+#include "src/Command/skipgame.h"
+#include "src/Command/help.h"
+#include "src/Command/another_command.h"
+#include "BNMO_display.h"
 
 void fetchBNMO(Word *INPUT)
 {
     do
     {
-        printf("ENTER COMMAND: ");
+        printf("MASUKKAN COMMAND: ");
         COMMAND();
         int i;
         for (i = 0; i < currentWord.Length; i++)
@@ -41,6 +43,11 @@ void fetchBNMO(Word *INPUT)
                 i++;
             }
             (*INPUT).Length = i;
+
+            if (isWordEqual((*INPUT),validCOMMAND().Elmt[0]))
+            {
+                (*INPUT).Length = 0;
+            }
         }
         if (!isCOMMAND(*INPUT))
         {
@@ -64,12 +71,43 @@ void fetchBNMO(Word *INPUT)
     while (!isWordEqual((*INPUT),validCOMMAND().Elmt[0]) && !isWordEqual((*INPUT),validCOMMAND().Elmt[1]));
 }
 
+void backToMainPage()
+{
+    printf("\n\n\n\n\nK E M B A L I  K E  H A L A M A N  U T A M A ");
+    countdown();
+    system("cls");
+}
+
+void changePage()
+{
+    printf("\n\n\n\n\nM O H O N  T U N G G U ");
+    countdown();
+    system("cls");
+    printf("==================================| B N M O |==================================\n");
+}
+
+void loadGame(Word game)
+{
+    printf("\n\n\n\n\nS E D A N G  M E M U A T  ");
+    for (int i = 0; i < game.Length; i++)
+    {
+        printf("%c ", game.TabWord[i]);
+    }
+    countdown();
+    system("cls");
+    printf("==================================| B N M O |==================================\n");
+}
+
 void main()
 {
     Word INPUT;
     ArrayDin Game = MakeArrayDin();
+    Queue GameQ;
+    CreateQueue(&GameQ);
     char filename[50] = "docs/";
 
+    display();
+    printf("====================================| B N M O |====================================\n");
     printf("Masukkan command START atau LOAD <namafile>.txt untuk menjalan BNMO.\n");
     fetchBNMO(&INPUT);
     if (isWordEqual(INPUT,validCOMMAND().Elmt[0]))
@@ -136,16 +174,21 @@ void main()
             else
             {
                 fclose(test);
-                printf("Nama file yang Anda masukkan salah. Periksa kembali dan pastikan nama file benar.\n");
+                printf("Nama file yang Kamu masukkan salah. Periksa kembali dan pastikan nama file benar.\n");
                 fetchBNMO(&INPUT);
             }
         }
         while (success == false);
     }
 
+    printf("\n\n\n\n\nM O H O N  T U N G G U ");
+    countdown();
+    system("cls");
+
     while (!isWordEqual(INPUT,validCOMMAND().Elmt[9]))
     {
-        printf("ENTER COMMAND: ");
+        printf("==================================| B N M O |==================================\n");
+        printf("MASUKKAN COMMAND: ");
         COMMAND();
         for (int i = 0; i < currentWord.Length; i++)
         {
@@ -156,7 +199,7 @@ void main()
         if (!isCOMMAND(INPUT))
         {
             int i = 0;
-            while (currentWord.TabWord[i] != ' ')
+            while ((currentWord.TabWord[i] != ' ') && (i < currentWord.Length))
             {
                 INPUT.TabWord[i] = currentWord.TabWord[i];
                 i++;
@@ -173,6 +216,11 @@ void main()
                 }
             }
             filename[j] = '\0';
+
+            if (!isWordEqual(INPUT, validCOMMAND().Elmt[2]) && !isWordEqual(INPUT, validCOMMAND().Elmt[8]))
+            {
+                INPUT.Length = 0;
+            }
         }
 
         if (isCOMMAND(INPUT))
@@ -180,11 +228,14 @@ void main()
             // INPUT == START atau INPUT == LOAD
             if ((isWordEqual(INPUT, validCOMMAND().Elmt[0])) || (isWordEqual(INPUT, validCOMMAND().Elmt[1])))
             {
+                changePage();
                 printf("BNMO sudah dijalankan.\n");
+                backToMainPage();
             }
             // INPUT == SAVE
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[2])))
             {
+                changePage();
                 if (validExtension(filename))
                 {
                     Save(Game, filename);
@@ -192,19 +243,22 @@ void main()
                 }
                 else
                 {
-                    printf("Harap periksa kembali extension file Anda.\nFormat save: SAVE <namafile>.txt\n");
+                    printf("Harap periksa kembali extension file Kamu.\nFormat save: SAVE <namafile>.txt\n");
                 }
-                
+                backToMainPage();
             }
             // INPUT == CREATEGAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[3])))
             {
-
+                changePage();
+                Create(&Game);
+                backToMainPage();
             }
             // INPUT == LISTGAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[4])))
             {
-                printf("Berikut adalah daftar game yang tersedia.\n");
+                changePage();
+                printf("Berikut adalah daftar permainan yang tersedia.\n");
                 for (int i = 1; i < Game.Neff; i++)
                 {
                     printf("%d. ", i);
@@ -214,53 +268,100 @@ void main()
             // INPUT == DELETEGAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[5])))
             {
-
+                changePage();
+                DeleteGame(&Game, &GameQ);
+                backToMainPage();
             }
             // INPUT == QUEUEGAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[6])))
             {
-
+                changePage();
+                QueueGame(&Game, &GameQ);
+                backToMainPage();
             }
             // INPUT == PLAYGAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[7])))
             {
-
+                if (isEmptyQueue(GameQ))
+                {
+                    changePage();
+                    printf("Daftar antrian Kamu kosong. Silahkan tambahkan permainan terlebih dahulu.\n");
+                }
+                else
+                {
+                    loadGame(HEAD(GameQ));
+                    PlayGame(&GameQ);
+                }
+                backToMainPage();
             }
-            // INPUT == SKIP GAME
+            // INPUT == SKIPGAME
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[8])))
             {
+                changePage();
                 int idx = 5, n = 0;
                 while (filename[idx] != '\0')
                 {
                     idx++;
                 }
-                for (int tidx = (idx - 6); tidx >= 0; tidx--)
+                int digit = 0;
+                for (int tidx = (idx - 1); tidx >= 5; tidx--)
                 {
-                    n += ((filename[tidx] - '0') * pow(10, tidx));
+                    n += ((filename[tidx] - '0') * pow(10, digit));
+                    digit++;
                 }
-                if ((n > 0) && (n <= toInt(Game.Elmt[0])))
+                if (n > 0)
                 {
-
+                    SkipGame(&GameQ, n);
+                    if (isEmptyQueue(GameQ))
+                    {
+                        printf("Tidak ada permainan lagi dalam daftar antrian.\n");
+                    }
                 }
                 else
                 {
-                    printf("Tidak ada permainan lagi dalam daftar game-mu.\n");
+                    printf("Parameter skip tidak valid.\nTIPS: Parameter harus lebih besar dari nol\n");
                 }
+                backToMainPage();
             }
             // INPUT == QUIT
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[9])))
             {
-                printf("Anda keluar dari game BNMO.\nBye bye ...\n");
+                printf("Apakah Kamu ingin menyimpan data permainanmu? (y/n)\t");
+                COMMAND();
+                if (currentWord.TabWord[0] == 'y')
+                {
+                    INPUT.Length = 0;
+                    backToMainPage();
+                }
+                else if (currentWord.TabWord[0] == 'n')
+                {
+                    system("cls");
+                    printf("==================================| B N M O |==================================\n");
+                    printf("           ^_^ T E R I M A  K A S I H  T E L A H  B E R M A I N ^_^\n");
+                    printf("                              B Y E  B Y E ");
+                    countdown();
+                    system("cls");
+                }
+                else
+                {
+                    INPUT.Length = 0;
+                    changePage();
+                    printf("Command tidak dikenali, silahkan masukkan command yang valid.\n");
+                    backToMainPage();
+                }
             }
             // INPUT == HELP
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[10])))
             {
+                changePage();
                 Help();
             }
         }
         else
         {
+            changePage();
             printf("Command tidak dikenali, silahkan masukkan command yang valid.\n");
+            backToMainPage();
         }
     }
 }

@@ -37,12 +37,12 @@ void DeallocateQueue(Queue *q)
 }
 
 /* ********* Prototype ********* */
-boolean isEmpty(Queue q)
+boolean isEmptyQueue(Queue q)
 {
     return (IDX_HEAD(q) == IDX_UNDEF) && (IDX_TAIL(q) == IDX_UNDEF);
 }
 /* Mengirim true jika q kosong: lihat definisi di atas */
-boolean isFull(Queue q)
+boolean isFullQueue(Queue q)
 {
     return IDX_TAIL(q) == (CAPACITY(q) - 1);
 }
@@ -50,16 +50,16 @@ boolean isFull(Queue q)
 /* yaitu IDX_TAIL akan selalu di belakang IDX_HEAD */
 /* IDX_HEAD selalu bernilai 0 */
 
-int length(Queue q)
+int lengthQueue(Queue q)
 {
     return IDX_TAIL(q) + 1;
 }
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
 
 /* *** Primitif Add/Delete *** */
-void enqueue(Queue *q, QueueType val)
+void enqueueQ(Queue *q, QueueType val)
 {
-    if (isFull(*q))
+    if (isFullQueue(*q))
     {
         CAPACITY(*q) *= 2;
         do
@@ -68,7 +68,7 @@ void enqueue(Queue *q, QueueType val)
         }
         while ((*q).buffer == NULL);
     }
-    if (isEmpty(*q))
+    if (isEmptyQueue(*q))
     {
         IDX_HEAD(*q) = 0;
     }
@@ -83,10 +83,10 @@ void enqueue(Queue *q, QueueType val)
 /* I.S. q mungkin kosong, tabel penampung elemen q mungkin penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL bertambah satu */
 
-void dequeue(Queue *q, QueueType *val)
+void dequeueQ(Queue *q, QueueType *val)
 {
     (*val).Length = HEAD(*q).Length;
-    for (int i = 0; i < IDX_TAIL(*q); i++)
+    for (int i = 0; i < HEAD(*q).Length; i++)
     {
         (*val).TabWord[i] = HEAD(*q).TabWord[i + 1];
     }
@@ -101,7 +101,7 @@ void dequeue(Queue *q, QueueType *val)
             (*q).buffer[i].Length = (*q).buffer[i + 1].Length;
             for (int j = 0; j < (*q).buffer[i].Length; j++)
             {
-                (*q).buffer[i].TabWord[j] = (*q).buffer[i].TabWord[j + 1];
+                (*q).buffer[i].TabWord[j] = (*q).buffer[i+1].TabWord[j];
             }
         }
     }
@@ -111,27 +111,3 @@ void dequeue(Queue *q, QueueType *val)
 /* I.S. q tidak mungkin kosong */
 /* F.S. val = nilai elemen HEAD pd I.S., semua elemen bergeser ke kiri, dan q mungkin kosong */
 
-/* *** Display Queue *** */
-void displayQueue(Queue q)
-{
-    if (isEmpty(q))
-    {
-        printf("[]\n");
-    }
-    else
-    {
-        printf("[");
-        for (int i = 0; i < IDX_TAIL(q); i++)
-        {
-            printWord(q.buffer[i]);
-        }
-        printf("%d]\n", TAIL(q));
-    }
-}
-/* Proses : Menuliskan isi Queue dengan traversal, Queue ditulis di antara kurung 
-   siku; antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan 
-   karakter di depan, di tengah, atau di belakang, termasuk spasi dan enter */
-/* I.S. q boleh kosong */
-/* F.S. Jika q tidak kosong: [e1,e2,...,en] */
-/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
-/* Jika Queue kosong : menulis [] */

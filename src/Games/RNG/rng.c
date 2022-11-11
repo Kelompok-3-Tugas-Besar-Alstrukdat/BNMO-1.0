@@ -9,7 +9,8 @@
 // dengan rentang nilai 0-100 (inclusive)
 int RandomNumber()
 {
-    srand(time(0));
+    time_t t;
+    srand(time(&t));
     int num = (rand() % 101); // Diperoleh dari num = (rand() % (100 - 0 + 1)) + 0
     return num;
 }
@@ -18,6 +19,7 @@ int RandomNumber()
 // Prekondisi: tebakan merupakan bilangan bulat (integer)
 void runRNG()
 {
+    printf("===================================| R N G |===================================\n");
     printf("RNG telah dimulai. Uji keberuntungan Anda dengan menebak X.\n");
     int X = RandomNumber(), score = 110, attempt = 0, tebakan;
     do

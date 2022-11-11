@@ -44,35 +44,25 @@ void CreateQueue(Queue *q);
 void DeallocateQueue(Queue *q);
 
 /* ********* Prototype ********* */
-boolean isEmpty(Queue q);
+boolean isEmptyQueue(Queue q);
 /* Mengirim true jika q kosong: lihat definisi di atas */
-boolean isFull(Queue q);
+boolean isFullQueue(Queue q);
 /* Mengirim true jika tabel penampung elemen q sudah penuh */
 /* yaitu IDX_TAIL akan selalu di belakang IDX_HEAD */
 /* IDX_HEAD selalu bernilai 0 */
 
-int length(Queue q);
+int lengthQueue(Queue q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong */
 
 /* *** Primitif Add/Delete *** */
-void enqueue(Queue *q, QueueType val);
+void enqueueQ(Queue *q, QueueType val);
 /* Proses: Menambahkan val pada q dengan aturan FIFO */
 /* I.S. q mungkin kosong, tabel penampung elemen q mungkin penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL bertambah satu */
 
-void dequeue(Queue *q, QueueType *val);
+void dequeueQ(Queue *q, QueueType *val);
 /* Proses: Menghapus val pada q dengan aturan FIFO */
 /* I.S. q tidak mungkin kosong */
 /* F.S. val = nilai elemen HEAD pd I.S., semua elemen bergeser ke kiri, dan q mungkin kosong */
-
-/* *** Display Queue *** */
-void displayQueue(Queue q);
-/* Proses : Menuliskan isi Queue dengan traversal, Queue ditulis di antara kurung 
-   siku; antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan 
-   karakter di depan, di tengah, atau di belakang, termasuk spasi dan enter */
-/* I.S. q boleh kosong */
-/* F.S. Jika q tidak kosong: [e1,e2,...,en] */
-/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
-/* Jika Queue kosong : menulis [] */
 
 #endif
