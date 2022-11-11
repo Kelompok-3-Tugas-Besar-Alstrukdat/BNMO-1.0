@@ -147,7 +147,16 @@ int runHideInCartesian()
 
         system("cls");
         printf("======================| H I D E  I N  C A R T E S I A N |======================\n");
-        printf("Dimanakah Kenz bersembunyi? ");
+        printf("Petunjuk yang dapat kamu berikan kepada Indra: (Case Sensitive)\n");
+        printf(">>> TITIK ASAL\n");
+        printf(">>> SUMBU X\n");
+        printf(">>> SUMBU Y\n");
+        printf(">>> KUADRAN 1\n");
+        printf(">>> KUADRAN 2\n");
+        printf(">>> KUADRAN 3\n");
+        printf(">>> KUADRAN 4\n");
+        printf("Kesempatan: %d", (5 - count));
+        printf("\n\nDimanakah Kenz bersembunyi? ");
         COMMAND();
         countdown();
         if (isWordEqual(currentWord, HideOut))
@@ -162,6 +171,7 @@ int runHideInCartesian()
             printf("Kenz mungkin sudah pindah ke tempat lain nihhh...\n");
             countdown();
         }
+        count++;
     }
 
     if (clear)
