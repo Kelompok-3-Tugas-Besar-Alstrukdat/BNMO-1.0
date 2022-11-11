@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 
 //------------------------------------------------------------ FILE HEADER ADT ------------------------------------------------------------//
 #include "src/ADT/Array/arraydin.c"
