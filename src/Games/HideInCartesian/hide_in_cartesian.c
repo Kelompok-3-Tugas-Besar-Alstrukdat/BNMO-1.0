@@ -79,7 +79,8 @@ int runHideInCartesian()
     printf(">>> KUADRAN 2\n");
     printf(">>> KUADRAN 3\n");
     printf(">>> KUADRAN 4\n");
-    for (i = 0; i < 10; i++)
+    printf("\n\nB A C A  D U L U  P E T U N J U K N Y A ");
+    for (i = 0; i < 7; i++)
     {
         countdown();
     }
