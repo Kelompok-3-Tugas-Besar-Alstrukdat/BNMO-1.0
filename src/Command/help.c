@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+//Menampilkan Command-command yang dapat dijalankan dalam BNMO
 void Help(){
     printf("H E L P\n");
     printf(" 1. START\n");
