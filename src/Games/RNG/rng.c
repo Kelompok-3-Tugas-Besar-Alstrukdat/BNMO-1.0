@@ -19,6 +19,7 @@ int RandomNumber()
 // Prekondisi: tebakan merupakan bilangan bulat (integer)
 void runRNG()
 {
+    printf("===================================| R N G |===================================\n");
     printf("RNG telah dimulai. Uji keberuntungan Anda dengan menebak X.\n");
     int X = RandomNumber(), score = 110, attempt = 0, tebakan;
     do
