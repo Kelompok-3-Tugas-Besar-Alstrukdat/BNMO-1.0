@@ -28,9 +28,5 @@ boolean isOrigin (Point p);
 void displayPoint (Point p);
 /* Nilai p ditulis ke layar dg format "(X,Y)" */
 
-/**** Fungsi/Operasi lain terhadap point ****/
-Point move (Point p, int dx, int dy);
-/* Menghasilkan point yang merupakan hasil penggeseran p */
-/* sebesar dx arah sumbu x dan dy arah sumbu y */
 
 #endif

@@ -21,12 +21,3 @@ void displayPoint (Point p)
     printf("(%d,%d)", ABSIS(p), ORDINAT(p));
 }
 /* Nilai p ditulis ke layar dg format "(X,Y)" */
-
-/**** Fungsi/Operasi lain terhadap point ****/
-Point move (Point p, int dx, int dy)
-{
-    Point pt;
-    CreatePoint(&pt, ABSIS(p)+dx, ORDINAT(p)+dy);
-    return (pt);
-}
-/* Menghasilkan point yang merupakan hasil penggeseran p sebesar dx arah sumbu x dan dy arah sumbu y */
