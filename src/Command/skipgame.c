@@ -1,12 +1,11 @@
-void SKIPGAME (queue *game, int n){
-    int i;
-    scanf("%d", &n);
-    if (n <= length(q)){
-        while (i <= n){
-            dequeue(*game, *HEAD(q));
-        }
+#include <stdio.h>
+
+void SkipGame(Queue *game, int n){
+    for (int i = 0; ((i < n) && (i < lengthQueue(*game))); i++){
+        QueueType val;
+        dequeueQ(game, &val);
     }
-    else {
-        printf("Tidak ada permainan lagi dalam daftar game-mu /n");
+    if (!isEmptyQueue(*game)){
+        PlayGame(game);
     }
 }
