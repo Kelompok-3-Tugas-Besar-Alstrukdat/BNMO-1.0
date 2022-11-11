@@ -9,7 +9,8 @@
 // dengan rentang nilai 0-100 (inclusive)
 int RandomNumber()
 {
-    srand(time(0));
+    time_t t;
+    srand(time(&t));
     int num = (rand() % 101); // Diperoleh dari num = (rand() % (100 - 0 + 1)) + 0
     return num;
 }
