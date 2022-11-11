@@ -216,5 +216,4 @@ void countdown(){
                 check = -99;
             }
         }
-        printf("\n");
 }
