@@ -11,7 +11,7 @@ ArrayDin validCOMMAND()
     int i;
 
     // START
-    // Menyimpan command "START" ke dalam array command indeks 0
+    // Menyimpan perintah "START" ke dalam array command indeks 0
     command.Elmt[0].Length = 5;
     char CMDSTART[15] = "START";
     for (i = 0; i < 5; i++)
@@ -20,7 +20,7 @@ ArrayDin validCOMMAND()
     }
 
     // LOAD
-    // Menyimpan command "LOAD" ke dalam array command indeks 1
+    // Menyimpan perintah "LOAD" ke dalam array command indeks 1
     command.Elmt[1].Length = 4;
     char CMDLOAD[15] = "LOAD";
     for (i = 0; i < 4; i++)
@@ -29,7 +29,7 @@ ArrayDin validCOMMAND()
     }
 
     // SAVE
-    // Menyimpan command "SAVE" ke dalam array command indeks 2
+    // Menyimpan perintah "SAVE" ke dalam array command indeks 2
     command.Elmt[2].Length = 4;
     char CMDSAVE[15] = "SAVE";
     for (i = 0; i < 4; i++)
@@ -38,7 +38,7 @@ ArrayDin validCOMMAND()
     }
 
     // CREATE GAME
-    // Menyimpan command "CREATE GAME" ke dalam array command indeks 3
+    // Menyimpan perintah "CREATE GAME" ke dalam array command indeks 3
     command.Elmt[3].Length = 11;
     char CMDCG[15] = "CREATE GAME";
     for (i = 0; i < 11; i++)
@@ -47,7 +47,7 @@ ArrayDin validCOMMAND()
     }
 
     // LIST GAME
-    // Menyimpan command "LIST GAME" ke dalam array command indeks 4
+    // Menyimpan perintah "LIST GAME" ke dalam array command indeks 4
     command.Elmt[4].Length = 9;
     char CMDLG[15] = "LIST GAME";
     for (i = 0; i < 9; i++)
@@ -56,7 +56,7 @@ ArrayDin validCOMMAND()
     }
 
     // DELETE GAME
-    // Menyimpan command "DELETE GAME" ke dalam array command indeks 5
+    // Menyimpan perintah "DELETE GAME" ke dalam array command indeks 5
     command.Elmt[5].Length = 11;
     char CMDDG[15] = "DELETE GAME";
     for (i = 0; i < 11; i++)
@@ -65,7 +65,7 @@ ArrayDin validCOMMAND()
     }
 
     // QUEUE GAME
-    // Menyimpan command "QUEUE GAME" ke dalam array command indeks 6
+    // Menyimpan perintah "QUEUE GAME" ke dalam array command indeks 6
     command.Elmt[6].Length = 10;
     char CMDQG[15] = "QUEUE GAME";
     for (i = 0; i < 10; i++)
@@ -74,7 +74,7 @@ ArrayDin validCOMMAND()
     }
 
     // PLAY GAME
-    // Menyimpan command "PLAY GAME" ke dalam array command indeks 7
+    // Menyimpan perintah "PLAY GAME" ke dalam array command indeks 7
     command.Elmt[7].Length = 9;
     char CMDPG[15] = "PLAY GAME";
     for (i = 0; i < 9; i++)
@@ -83,7 +83,7 @@ ArrayDin validCOMMAND()
     }
 
     // SKIPGAME
-    // Menyimpan command "SKIPGAME" ke dalam array command indeks 8
+    // Menyimpan perintah "SKIPGAME" ke dalam array command indeks 8
     command.Elmt[8].Length = 8;
     char CMDSG[15] = "SKIPGAME";
     for (i = 0; i < 8; i++)
@@ -92,7 +92,7 @@ ArrayDin validCOMMAND()
     }
 
     // QUIT
-    // Menyimpan command "QUIT" ke dalam array command indeks 9
+    // Menyimpan perintah "QUIT" ke dalam array command indeks 9
     command.Elmt[9].Length = 4;
     char CMDQUIT[15] = "QUIT";
     for (i = 0; i < 4; i++)
@@ -101,7 +101,7 @@ ArrayDin validCOMMAND()
     }
 
     // HELP
-    // Menyimpan command "HELP" ke dalam array command indeks 10
+    // Menyimpan perintah "HELP" ke dalam array command indeks 10
     command.Elmt[10].Length = 4;
     char CMDHELP[15] = "HELP";
     for (i = 0; i < 4; i++)
@@ -111,7 +111,7 @@ ArrayDin validCOMMAND()
     return command;
 }
 
-// Memeriksa apakah Kata merupakan sebuah command atau bukan
+// Memeriksa apakah Kata merupakan sebuah perintah yang valid atau bukan
 boolean isCOMMAND(Word Kata)
 {
     boolean check = false;
@@ -120,7 +120,7 @@ boolean isCOMMAND(Word Kata)
     int i;
 
     // START
-    // Menyimpan command "START" ke dalam array command indeks 0
+    // Menyimpan perintah "START" ke dalam array command indeks 0
     command.Elmt[0].Length = 5;
     char CMDSTART[15] = "START";
     for (i = 0; i < 5; i++)
@@ -129,7 +129,7 @@ boolean isCOMMAND(Word Kata)
     }
 
     // LOAD
-    // Menyimpan command "LOAD" ke dalam array command indeks 1
+    // Menyimpan perintah "LOAD" ke dalam array command indeks 1
     command.Elmt[1].Length = 4;
     char CMDLOAD[15] = "LOAD";
     for (i = 0; i < 4; i++)
@@ -138,7 +138,7 @@ boolean isCOMMAND(Word Kata)
     }
 
     // SAVE
-    // Menyimpan command "SAVE" ke dalam array command indeks 2
+    // Menyimpan perintah "SAVE" ke dalam array command indeks 2
     command.Elmt[2].Length = 4;
     char CMDSAVE[15] = "SAVE";
     for (i = 0; i < 4; i++)
@@ -147,7 +147,7 @@ boolean isCOMMAND(Word Kata)
     }
 
     // CREATE GAME
-    // Menyimpan command "CREATE GAME" ke dalam array command indeks 3
+    // Menyimpan perintah "CREATE GAME" ke dalam array command indeks 3
     command.Elmt[3].Length = 11;
     char CMDCG[15] = "CREATE GAME";
     for (i = 0; i < 11; i++)
@@ -156,7 +156,7 @@ boolean isCOMMAND(Word Kata)
     }
 
     // LIST GAME
-    // Menyimpan command "LIST GAME" ke dalam array command indeks 4
+    // Menyimpan perintah "LIST GAME" ke dalam array command indeks 4
     command.Elmt[4].Length = 9;
     char CMDLG[15] = "LIST GAME";
     for (i = 0; i < 9; i++)
@@ -165,7 +165,7 @@ boolean isCOMMAND(Word Kata)
     }
 
     // DELETE GAME
-    // Menyimpan command "DELETE GAME" ke dalam array command indeks 5
+    // Menyimpan perintah "DELETE GAME" ke dalam array command indeks 5
     command.Elmt[5].Length = 11;
     char CMDDG[15] = "DELETE GAME";
     for (i = 0; i < 11; i++)
@@ -174,7 +174,7 @@ boolean isCOMMAND(Word Kata)
     }
 
     // QUEUE GAME
-    // Menyimpan command "QUEUE GAME" ke dalam array command indeks 6
+    // Menyimpan perintah "QUEUE GAME" ke dalam array command indeks 6
     command.Elmt[6].Length = 10;
     char CMDQG[15] = "QUEUE GAME";
     for (i = 0; i < 10; i++)
@@ -183,7 +183,7 @@ boolean isCOMMAND(Word Kata)
     }
 
     // PLAY GAME
-    // Menyimpan command "PLAY GAME" ke dalam array command indeks 7
+    // Menyimpan perintah "PLAY GAME" ke dalam array command indeks 7
     command.Elmt[7].Length = 9;
     char CMDPG[15] = "PLAY GAME";
     for (i = 0; i < 9; i++)
@@ -192,7 +192,7 @@ boolean isCOMMAND(Word Kata)
     }
 
     // SKIPGAME
-    // Menyimpan command "SKIPGAME" ke dalam array command indeks 8
+    // Menyimpan perintah "SKIPGAME" ke dalam array command indeks 8
     command.Elmt[8].Length = 8;
     char CMDSG[15] = "SKIPGAME";
     for (i = 0; i < 8; i++)
@@ -201,7 +201,7 @@ boolean isCOMMAND(Word Kata)
     }
 
     // QUIT
-    // Menyimpan command "QUIT" ke dalam array command indeks 9
+    // Menyimpan perintah "QUIT" ke dalam array command indeks 9
     command.Elmt[9].Length = 4;
     char CMDQUIT[15] = "QUIT";
     for (i = 0; i < 4; i++)
@@ -210,7 +210,7 @@ boolean isCOMMAND(Word Kata)
     }
 
     // HELP
-    // Menyimpan command "HELP" ke dalam array command indeks 10
+    // Menyimpan perintah "HELP" ke dalam array command indeks 10
     command.Elmt[10].Length = 4;
     char CMDHELP[15] = "HELP";
     for (i = 0; i < 4; i++)
@@ -218,7 +218,7 @@ boolean isCOMMAND(Word Kata)
         command.Elmt[10].TabWord[i] = CMDHELP[i];
     }
 
-    // Memeriksa apakah Kata merupakan sebuah command atau bukan
+    // Memeriksa apakah Kata merupakan sebuah perintah atau bukan
     i = 0;
     while ((check == false) && (i < 11))
     {
