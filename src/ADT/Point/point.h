@@ -1,6 +1,8 @@
 #ifndef __POINT__
 #define __POINT__
 
+
+#include <stdio.h>
 #include <stdio.h>
 #include "../../boolean.h"
 #include "../MesinKata/mesinkata.h"
