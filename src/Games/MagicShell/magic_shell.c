@@ -1,12 +1,11 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include "../../ADT/Array/arraydin.h"
-#include "../../ADT/MesinKata/mesinkata.h"
+/* =====| GAME MAGIC SHELL |===== */
 
+// Include file header yang diperlukan
+#include "../games.h"
+
+// Prosedur untuk menjalankan permainan Magic Shell
+// Menjawab pertanyaan apapun yang diberikan
 void magic_shell() {
-    printf("============================| M A G I C  S H E L L |=============================\n");
-    printf("Puja kerang ajaib!!! Ulululululululu!!!\n");
     ArrayDin magshell = MakeArrayDin();
     magshell.Neff = 2;
     // Ya
@@ -23,7 +22,6 @@ void magic_shell() {
     Input.TabWord[1] = 'a';
 
     while (isWordEqual(Input, magshell.Elmt[0])) {
-        system("cls");
         printf("============================| M A G I C  S H E L L |=============================\n");
         printf("Silahkan tanyakan apa saja!\n");
         COMMAND();
@@ -67,6 +65,10 @@ void magic_shell() {
         {
             Input.TabWord[i] = currentWord.TabWord[i];
         }
+        countdown();
+        system("cls");
     }
+    system("cls");
+    printf("============================| M A G I C  S H E L L |=============================\n");
     printf("Puja kerang ajaib!!! Ulululululululu!!!\n");
 }

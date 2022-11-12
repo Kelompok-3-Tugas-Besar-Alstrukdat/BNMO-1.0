@@ -1,9 +1,10 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include "../../boolean.h"
-#include "../../ADT/Point/point.c"
+/* =====| GAME HIDE IN CARTESIAN |===== */
 
+// Include file header yang diperlukan
+#include "../games.h"
+
+// Prosedur untuk menjalankan permainan Hide In Cartesian
+// Menebak tempat persembuyian yang berada pada koordinar cartesius
 int runHideInCartesian()
 {
     int i, count = 0;
@@ -155,7 +156,7 @@ int runHideInCartesian()
         printf(">>> KUADRAN 2\n");
         printf(">>> KUADRAN 3\n");
         printf(">>> KUADRAN 4\n");
-        printf("Kesempatan: %d", (5 - count));
+        printf("\nKesempatan: %d\n", (5 - count));
         printf("\n\nDimanakah Kenz bersembunyi? ");
         COMMAND();
         countdown();

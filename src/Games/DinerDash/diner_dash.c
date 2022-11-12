@@ -1,7 +1,9 @@
-#include "diner_dash.h"
+/* =====| GAME DINER DASH |===== */
 
+// Include file header yang diperlukan
+#include "../games.h"
 
-/* *** Kreator *** */
+// Kreator Queue
 void CreateDinerQ(DinerQ *dq)
 {
     Capacity(*dq) = DCapacity;
@@ -14,12 +16,13 @@ void CreateDinerQ(DinerQ *dq)
     Idx_Head(*dq) = Idx_Undef;
     Idx_Tail(*dq) = Idx_Undef;
 }
-/* I.S. sembarang */
-/* F.S. Sebuah dq kosong terbentuk dengan kondisi sbb: */
-/* - Index head bernilai Idx_Undef */
-/* - Index Tail bernilai Idx_Undef */
-/* Proses : Melakukan alokasi, membuat sebuah dq kosong */
+// I.S. sembarang
+// F.S. Sebuah dq kosong terbentuk dengan kondisi sbb:
+// - Index head bernilai Idx_Undef
+// - Index Tail bernilai Idx_Undef
+// Proses : Melakukan alokasi, membuat sebuah dq kosong
 
+// Kreator Array
 void CreateDinerArr(DinerArr *da)
 {
     for (int i = 0; i  < DCapacity; i++)
@@ -27,32 +30,30 @@ void CreateDinerArr(DinerArr *da)
         (*da).Elmt[i] = Idx_Undef;
     }
 }
-/* I.S. sembarang */
-/* F.S. Sebuah da kosong terbentuk dengan kondisi sbb: */
-/* - Elmt bernilai Idx_Undef */
+// I.S. sembarang
+// F.S. Sebuah da kosong terbentuk dengan kondisi sbb:
+// - Elmt bernilai Idx_Undef
 
-
-/* ********* Prototype ********* */
+// Prototype
 boolean isEmptyDQ(DinerQ dq)
 {
     return (Idx_Head(dq) == Idx_Undef) && (Idx_Tail(dq) == Idx_Undef);
 }
-/* Mengirim true jika dq kosong: lihat definisi di atas */
+// Mengirim true jika dq kosong: lihat definisi di atas
 boolean isFullDQ(DinerQ dq)
 {
     return (Idx_Head(dq) == 0) && (Idx_Tail(dq) == (Capacity(dq) - 1));
 }
-/* Mengirim true jika tabel penampung elemen dq sudah penuh */
-/* yaitu Idx_Tail akan selalu di belakang Idx_Head */
-/* Idx_Head selalu bernilai 0 */
-
+// Mengirim true jika tabel penampung elemen dq sudah penuh
+// yaitu Idx_Tail akan selalu di belakang Idx_Head
+// Idx_Head selalu bernilai 0
 int lengthDQ(DinerQ dq)
 {
     return Idx_Tail(dq) - Idx_Head(dq) + 1;
 }
-/* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika dq kosong */
+// Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika dq kosong
 
-/* *** Primitif Add/Delete *** */
+// Primitif Add/Delete
 void enqueueDQ(DinerQ *dq, DinerQType val)
 {
     if (isEmptyDQ(*dq))
@@ -68,10 +69,9 @@ void enqueueDQ(DinerQ *dq, DinerQType val)
     Tail(*dq).Resistance = val.Resistance;
     Tail(*dq).Price = val.Price;
 }
-/* Proses: Menambahkan val pada dq dengan aturan FIFO */
-/* I.S. dq mungkin kosong, tabel penampung elemen dq mungkin penuh */
-/* F.S. val menjadi Tail yang baru, Idx_Tail bertambah satu */
-
+// Proses: Menambahkan val pada dq dengan aturan FIFO
+// I.S. dq mungkin kosong, tabel penampung elemen dq mungkin penuh
+// F.S. val menjadi Tail yang baru, Idx_Tail bertambah satu
 void dequeueDQ(DinerQ *dq, DinerQType *val)
 {
     (*val).Duration = Head(*dq).Duration;
@@ -87,11 +87,11 @@ void dequeueDQ(DinerQ *dq, DinerQType *val)
         Idx_Head(*dq)++;
     }
 }
-/* Proses: Menghapus val pada dq dengan aturan FIFO */
-/* I.S. dq tidak mungkin kosong */
-/* F.S. val = nilai elemen Head pd I.S., semua elemen bergeser ke kiri, dan dq mungkin kosong */
+// Proses: Menghapus val pada dq dengan aturan FIFO
+// I.S. dq tidak mungkin kosong
+// F.S. val = nilai elemen Head pd I.S., semua elemen bergeser ke kiri, dan dq mungkin kosong
 
-/* *** Display DinerQ *** */
+// Display DinerQ
 void displayQueueDQ(DinerQ dq)
 {
     for (int i = Idx_Head(dq); i <= Idx_Tail(dq); i++)
@@ -99,20 +99,15 @@ void displayQueueDQ(DinerQ dq)
         printf("M%d\t| %d\t\t | %d\t     | %d\t\n", i, dq.buffer[i].Duration, dq.buffer[i].Resistance, dq.buffer[i].Price);
     }
 }
-/* Proses : Menuliskan isi DinerQ dengan traversal, DinerQ ditulis di antara kurung 
-   siku; antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan 
-   karakter di depan, di tengah, atau di belakang, termasuk spasi dan enter */
-/* I.S. dq boleh kosong */
-/* F.S. Jika dq tidak kosong: [e1,e2,...,en] */
-/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
-/* Jika DinerQ kosong : menulis [] */
+// Proses : Menuliskan isi DinerQ dengan traversal, DinerQ ditulis seperti dalm sebuah tabel
 
+// Random Number Generator Nilai Atribut
 void controlRand()
 {
     time_t t;
     srand(time(&t));
 }
-
+// Mengontrol nilai yang akan dihasilkan
 DinerQType randVal()
 {
     DinerQType val;
@@ -133,9 +128,12 @@ DinerQType randVal()
     }
     return val;
 }
+// Menghasilkan nilai random
 
+// Prosedur untuk menjalankan permainan Diner Dash
 void runDinerDash()
 {
+    printf("=============================| D I N E R  D A S H |=============================\n"); 
     printf("Selamat Datang di Diner Dash!\n");
     int Saldo = 0;
     boolean valid = false;
@@ -250,8 +248,7 @@ void runDinerDash()
 
         // Control status masukan command
         valid = true;
-
-        printf("================================================================================\n");        
+        printf("=============================| D I N E R  D A S H |=============================\n"); 
         if (currentWord.Length > 4)
         {
             int i = 0;
@@ -337,16 +334,16 @@ void runDinerDash()
                 printf("Command yang Anda masukkan tidak valid\n");
             }
         }
-        printf("================================================================================\n");
+        printf("=============================| D I N E R  D A S H |=============================\n"); 
     }
     if (lengthDQ(DQDash) > 7)
     {
-        printf("                   GAME OVER\n");
+        printf("                G A M E  O V E R\n");
         printf("!!! Antrian Anda telah melebihi 7 pelanggan !!!\n");
     }
     else
     {
-        printf("CONGRATULATION\n");
+        printf(" C O N G R A T U L A T I O N\n");
         printf("$$$ You earned Rp%d,- $$$", Saldo);
     }
 }
