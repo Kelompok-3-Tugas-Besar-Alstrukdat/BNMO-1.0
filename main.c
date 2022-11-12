@@ -176,13 +176,13 @@ void main()
     {
         printf("==================================| B N M O |==================================\n");
         printf("Menu dan command yang dapat diakses:\n");
-        printf(">>> CREATE GAME\n");
-        printf(">>> DELETE GAME\n");
         printf(">>> LIST GAME\n");
         printf(">>> QUEUE GAME\n");
+        printf(">>> CREATE GAME\n");
+        printf(">>> DELETE GAME\n");
         printf(">>> PLAY GAME\n");
         printf(">>> SKIPGAME <n>\n");
-        printf(">>> SAVE <namafile>.txt");
+        printf(">>> SAVE <namafile>.txt\n");
         printf(">>> QUIT\n");
         printf(">>> HELP\n");
         printf("\nMASUKKAN COMMAND: ");
