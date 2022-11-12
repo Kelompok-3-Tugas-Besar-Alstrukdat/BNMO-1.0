@@ -1,25 +1,12 @@
-//--------------------------------------------------------------- C LIBRARY ---------------------------------------------------------------//
+//---------------------------------------------------------- INCLUDE FILE HEADER ----------------------------------------------------//
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include <time.h>
-
-//------------------------------------------------------------ FILE HEADER ADT ------------------------------------------------------------//
-#include "src/ADT/Array/arraydin.h"
-#include "src/ADT/MesinKarakter/mesinkarakter.h"
-#include "src/ADT/MesinKata/mesinkata.h"
-#include "src/ADT/Queue/queue.h"
-
-//--------------------------------------------------- FILE HEADER FUNCTION FOR COMMAND ----------------------------------------------------//
-#include "src/Command/save.h"
-#include "src/Command/creategame.h"
-#include "src/Command/deletegame.h"
-#include "src/Command/queuegame.h"
-#include "src/Command/playgame.h"
-#include "src/Command/skipgame.h"
-#include "src/Command/help.h"
-#include "src/Command/another_command.h"
+#include <math.h>
 #include "BNMO_display.h"
+#include "src/boolean.h"
+#include "src/Command/commands.h"
+#include "src/Games/games.h"
 
 void fetchBNMO(Word *INPUT)
 {
@@ -188,7 +175,17 @@ void main()
     while (!isWordEqual(INPUT,validCOMMAND().Elmt[9]))
     {
         printf("==================================| B N M O |==================================\n");
-        printf("MASUKKAN COMMAND: ");
+        printf("Menu dan command yang dapat diakses:\n");
+        printf(">>> CREATE GAME\n");
+        printf(">>> DELETE GAME\n");
+        printf(">>> LIST GAME\n");
+        printf(">>> QUEUE GAME\n");
+        printf(">>> PLAY GAME\n");
+        printf(">>> SKIPGAME <n>\n");
+        printf(">>> SAVE <namafile>.txt");
+        printf(">>> QUIT\n");
+        printf(">>> HELP\n");
+        printf("\nMASUKKAN COMMAND: ");
         COMMAND();
         for (int i = 0; i < currentWord.Length; i++)
         {
@@ -251,7 +248,7 @@ void main()
             else if ((isWordEqual(INPUT, validCOMMAND().Elmt[3])))
             {
                 changePage();
-                Create(&Game);
+                CreateGame(&Game);
                 backToMainPage();
             }
             // INPUT == LISTGAME
@@ -312,10 +309,6 @@ void main()
                 if (n > 0)
                 {
                     SkipGame(&GameQ, n);
-                    if (isEmptyQueue(GameQ))
-                    {
-                        printf("Tidak ada permainan lagi dalam daftar antrian.\n");
-                    }
                 }
                 else
                 {
