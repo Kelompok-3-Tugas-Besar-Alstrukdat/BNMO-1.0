@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "BNMO_display.h"
 void display(){
     printf("                   .^^^^^^^^^^^^^^^^^:.           ^^^^^^^^          .^^^^^^^:  \n");
     printf("                   J@&&&&&&&&&&&&&&&&&#B57.      :#@&&&&&&G^        ?@&&&&&@G  \n"); 
