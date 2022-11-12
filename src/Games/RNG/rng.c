@@ -1,9 +1,7 @@
-// Game RNG
-// Menguji seberapa beruntung Anda dengan menebak sebuah nilai
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include "../../ADT/MesinKata/mesinkata.h"
+/* =====| GAME RNG |===== */
+
+// Include file header yang diperlukan
+#include "../games.h"
 
 // Fungsi untuk menentukan nilai integer yang random,
 // dengan rentang nilai 0-100 (inclusive)
@@ -14,7 +12,6 @@ int RandomNumber()
     int num = (rand() % 101); // Diperoleh dari num = (rand() % (100 - 0 + 1)) + 0
     return num;
 }
-
 // Prosedur yang menjalankan game RNG
 // Prekondisi: tebakan merupakan bilangan bulat (integer)
 void runRNG()

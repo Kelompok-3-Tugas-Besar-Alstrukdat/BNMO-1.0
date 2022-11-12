@@ -75,6 +75,9 @@ void printWord(Word Kata);
 void toStr(Word Kata, char *string);
 /* Mengubah kata yang merupakan tipe kata menjadi string */
 
+Word toWord(int val);
+/* Mengubah kata yang merupakan tipe kata menjadi string */
+
 int toInt (Word Kata);
 /* Mengubah kata yang merupakan angka numerik menjadi integer
    Prekondisi : Kata merupakan bilangan numerik */

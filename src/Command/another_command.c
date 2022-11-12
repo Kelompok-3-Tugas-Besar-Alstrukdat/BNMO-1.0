@@ -1,7 +1,5 @@
-#include <stdio.h>
-#include "../boolean.h"
-#include "../ADT/Array/arraydin.h"
-#include <time.h>
+// Include Header
+#include "commands.h"
 
 // Menyimpan Command-command yang valid ke dalam array command
 ArrayDin validCOMMAND()

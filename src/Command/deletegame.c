@@ -1,7 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "../ADT/MesinKata/mesinkata.h"
-#include "../ADT/Array/arraydin.h"
+// Include Header
+#include "commands.h"
 
 //Menghapus game dalam daftar game
 void DeleteGame(ArrayDin *Game, Queue *Gameq)

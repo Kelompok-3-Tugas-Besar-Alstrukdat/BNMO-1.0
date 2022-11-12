@@ -1,4 +1,5 @@
-#include <stdio.h>
+// Include Header
+#include "commands.h"
 
 //Menampilkan Command-command yang dapat dijalankan dalam BNMO
 void Help(){
