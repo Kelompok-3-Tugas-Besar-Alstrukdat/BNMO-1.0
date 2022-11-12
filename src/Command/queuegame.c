@@ -1,6 +1,5 @@
-#include "../ADT/Array/arraydin.h"
-#include "../ADT/MesinKata/mesinkata.h"
-#include "../ADT/MesinKarakter/mesinkarakter.h"
+// Include Header
+#include "commands.h"
 
 void QueueGame(ArrayDin *Game, Queue *Q){
     int i = 0;

@@ -1,17 +1,15 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "../ADT/MesinKata/mesinkata.h"
-#include "../ADT/Array/arraydin.h"
+// Include Header
+#include "commands.h"
 
-//Menambahkan permainan ke dalam daftar permainan
-void Create(ArrayDin *Game)
+// Menambahkan permainan ke dalam daftar permainan
+void CreateGame(ArrayDin *Game)
 {
     int i = 1;
     boolean cek = true;
     printf("Masukkan nama game yang akan ditambahkan: ");
     COMMAND();
 
-    //Syarat menambahkan game adalah nama permainan yang ingin ditambahkan belum ada di daftar permainan
+    // Syarat menambahkan game adalah nama permainan yang ingin ditambahkan belum ada di daftar permainan
     while((cek == true) && (i < (*Game).Neff)) {
         if (isWordEqual(currentWord, (*Game).Elmt[i])){
             cek = false;

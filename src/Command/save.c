@@ -1,7 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "../ADT/Array/arraydin.h"
-#include "../ADT/MesinKata/mesinkata.h"
+// Include Header
+#include "commands.h"
 
 boolean validExtension(char *filename)
 {

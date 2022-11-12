@@ -1,9 +1,5 @@
-#include <stdio.h>
-#include "../boolean.h"
-#include "../Games/DinerDash/diner_dash.c"
-#include "../Games/RNG/rng.c"
-#include "../Games/MagicShell/magic_shell.c"
-#include "../Games/HideInCartesian/hide_in_cartesian.c"
+// Include Header
+#include "commands.h"
 
 //Menjalankan permainan sesuai antrian permainan
 void PlayGame (Queue *q){

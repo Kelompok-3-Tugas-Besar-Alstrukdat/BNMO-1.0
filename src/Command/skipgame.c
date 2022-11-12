@@ -1,4 +1,5 @@
-#include <stdio.h>
+// Include Header
+#include "commands.h"
 
 void SkipGame(Queue *game, int n){
     QueueType val;
@@ -7,5 +8,9 @@ void SkipGame(Queue *game, int n){
     }
     if (!isEmptyQueue(*game)){
         PlayGame(game);
+    }
+    else
+    {
+        printf("Tidak ada permainan lagi dalam daftar antrian.\n");
     }
 }
