@@ -307,11 +307,13 @@ void runDinerDash()
                 // Input tidak valid
                 else
                 {
+                    valid = false;
                     printf("Command yang Anda masukkan tidak valid\n");
                 }
             }
             else
             {
+                valid = false;
                 printf("Command yang Anda masukkan tidak valid\n");
             }
         }
@@ -331,6 +333,7 @@ void runDinerDash()
             // Input tidak valid
             else
             {
+                valid = false;
                 printf("Command yang Anda masukkan tidak valid\n");
             }
         }
