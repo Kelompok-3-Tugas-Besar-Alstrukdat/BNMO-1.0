@@ -16,7 +16,7 @@ Compile terlebih dahulu pada terminal:
 gcc -o BNMO main.c BNMO_display.c src/ADT/Array/arraydin.c src/ADT/MesinKarakter/mesinkarakter.c src/ADT/MesinKata/mesinkata.c src/ADT/Point/point.c src/ADT/Queue/queue.c src/Command/another_command.c src/Command/save.c src/Command/creategame.c src/Command/deletegame.c src/Command/queuegame.c src/Command/playgame.c src/Command/skipgame.c src/Command/help.c src/Games/DinerDash/diner_dash.c src/Games/HideInCartesian/hide_in_cartesian.c src/Games/MagicShell/magic_shell.c src/Games/RNG/rng.c
 
 Setelah itu jalankan pada terminal:
-./BNMO.exe
+BNMO.exe
 
 ## Available Commands
 - START
