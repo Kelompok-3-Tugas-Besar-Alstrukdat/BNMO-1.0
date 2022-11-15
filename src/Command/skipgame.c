@@ -3,7 +3,7 @@
 
 void SkipGame(Queue *game, int n){
     QueueType val;
-    for (int i = 0; i < n; i++){
+    for (int i = 0; (i < n) && (i < lengthQueue(*game)); i++){
         dequeueQ(game, &val);
     }
     if (!isEmptyQueue(*game)){
